@@ -1,0 +1,10 @@
+.Navbar {
+  position: fixed; // Stick inside the viewport
+  inset: 0 0 auto 300px; // Offset on the left with width of sidemenu
+  z-index: 100; // Make sure header is above content
+
+  // Layout
+  max-width: 100%; // Make sure it stays inside viewport
+  padding: 1.25rem 0.25rem;
+  background: var(--bg-body-primary-transparent);
+}
