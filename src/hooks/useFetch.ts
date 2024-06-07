@@ -1,6 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 
+const AUTH_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
 type LoadingState = {
   state: "loading";
 };
@@ -30,7 +31,7 @@ type ResponseState<T> = LoadingState | ErrorState | SuccessState<T> | Idle;
  */
 export function useFetch<T>(
   URL: string,
-  requestType: "get" | "post" = "get",
+  requestType: "GET" | "POST" = "GET",
   requestData?: Record<string, string | number | boolean>
 ): ResponseState<T> {
   const [state, setState] = useState<ResponseState<T>>({
@@ -43,15 +44,21 @@ export function useFetch<T>(
         state: "loading",
       });
       try {
-        const request = {
+        const config: AxiosRequestConfig = {
           method: requestType,
           url: URL,
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${AUTH_TOKEN}`,
+          },
         };
         if (requestData) {
-          Object.assign(request, { data: requestData });
+          Object.assign(config, { data: requestData });
         }
 
-        const _response = await axios(request);
+        const _response = await axios(config);
+        console.log({ _response });
+
         const data = _response.data;
         setState({
           state: "success",
