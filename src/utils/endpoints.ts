@@ -1,4 +1,5 @@
 const baseURL = "https://api.themoviedb.org/3/";
+// const baseURL = "http://localhost:3000/" for JSON server
 export enum APIEndpoints {
   GuestSession = `${baseURL}authentication/guest_session/new`,
   CountriesList = `${baseURL}configuration/countries?language=en-US`,

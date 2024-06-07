@@ -1,0 +1,11 @@
+{
+  "/configuration/languages": "/languages",
+  "/person/popular": "/person-popular",
+  "/movie/popular": "/movie-popular",
+  "/movie/top_rated": "movie-top_rated",
+  "/movie/upcoming": "movie-upcoming",
+  "/movie/now_playing": "movie-now_playing",
+  "/genre/movie/list": "genre-movie-list",
+  "/discover/tv": "discover-tv",
+  "/discover/movie": "discover-movie"
+}
