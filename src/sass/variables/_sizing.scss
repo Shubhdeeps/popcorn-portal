@@ -1,0 +1,16 @@
+@use "sass:math";
+
+$base-width: 0.5rem;
+
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+$base-border-radius: 0.75rem;
+$base-flex-gap: 0.5rem;
+// Fonts
+$font-size-base: 1rem;
+$font-size-sm: 0.75rem;
+$font-size-md: $font-size-base * 1.5;
+$font-size-lg: $font-size-base * 2;
+$font-size-xl: $font-size-base * 4;
+$font-size-xxl: $font-size-base * 6;
