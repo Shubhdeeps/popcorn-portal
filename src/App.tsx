@@ -2,9 +2,9 @@
 // => highest revenue
 // => high vote count
 //  => Popular in estonia
-import Navbar from "@/components/Layout/Navbar";
 import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
+import Layout from "./components/Layout";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -12,9 +12,8 @@ function App() {
   console.log({ res2 });
 
   return (
-    <>
-      <Navbar />
-      <div className="mt-5">
+    <Layout>
+      <div className="">
         <h2 className="">Grid System</h2>
         <div className="row border-1">
           <div className="col-xs-12 col-sm-5 col-xl-3 border-1">
@@ -51,7 +50,7 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

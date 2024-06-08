@@ -1,8 +1,10 @@
+import AppLogo from "./AppLogo";
+
 export default function Navbar() {
   return (
-    <nav className="Navbar">
+    <nav className="navbar">
       <div className="container">
-        <div>jelo</div>
+        <AppLogo />
       </div>
     </nav>
   );
