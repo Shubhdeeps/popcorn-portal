@@ -1,5 +1,11 @@
 import { starSVG } from "@/assets/Star.svg";
-import Card, { CardContent, CardImage, CardTitle } from "@/features/Card";
+import Card, {
+  CardContent,
+  CardHeader,
+  CardImage,
+  CardRating,
+  CardTitle,
+} from "@/features/Card";
 import { MovieModel } from "@/models/Movie.model";
 
 interface INowPlayingProps
@@ -11,12 +17,10 @@ export default function NowPlayingMovieCard() {
         src="https://novouae.gumlet.io/Files//Movie/997x498/kingdom-of-the-planet-apes-2024.jpg?w=480&dpr=2.6"
         className="now-playing-movie-card__card-image"
       />
-      <CardContent>
+      <CardHeader>
         <CardTitle>Kingdom of the Planet of the Apes</CardTitle>
-        <div className="d-flex align-center gap-1 justify-start">
-          {starSVG} 6.9
-        </div>
-      </CardContent>
+        <CardRating rating={6.9} />
+      </CardHeader>
       <a>Check now</a>
     </Card>
   );
