@@ -1,5 +1,9 @@
-import "./navbar.scss";
-
 export default function Navbar() {
-  return <nav className="Navbar"></nav>;
+  return (
+    <nav className="Navbar">
+      <div className="container">
+        <div>jelo</div>
+      </div>
+    </nav>
+  );
 }
