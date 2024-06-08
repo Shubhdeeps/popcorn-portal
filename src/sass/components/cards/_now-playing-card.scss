@@ -1,0 +1,11 @@
+.now-playing-movie-card {
+  a {
+    color: $link-color;
+    font-size: $font-size-base;
+  }
+  &__card-image {
+    img {
+      height: 200px;
+    }
+  }
+}

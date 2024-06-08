@@ -6,6 +6,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
 import Layout from "./components/Layout";
 import PopularMovieCard from "./components/Cards/Movie/PopularMovieCard";
+import NowPlayingMovieCard from "./components/Cards/Movie/NowPlayingMovieCard";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -14,6 +15,9 @@ function App() {
 
   return (
     <Layout>
+      <div className="max-w-50">
+        <NowPlayingMovieCard />
+      </div>
       <div className="max-w-30">
         <PopularMovieCard />
       </div>

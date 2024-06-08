@@ -5,7 +5,7 @@ import Card, {
   CardHeader,
   CardImage,
   CardTitle,
-} from "../Card";
+} from "@/features/Card";
 
 export default function PopularMovieCard() {
   return (
