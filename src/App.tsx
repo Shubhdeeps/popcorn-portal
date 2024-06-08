@@ -5,6 +5,7 @@
 import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
 import Layout from "./components/Layout";
+import PopularMovieCard from "./components/Cards/Movie/PopularMovieCard";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -13,7 +14,10 @@ function App() {
 
   return (
     <Layout>
-      <div className="">
+      <div className="max-w-30">
+        <PopularMovieCard />
+      </div>
+      {/* <div className="">
         <h2 className="">Grid System</h2>
         <div className="row border-1">
           <div className="col-xs-12 col-sm-5 col-xl-3 border-1">
@@ -49,7 +53,7 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 }
