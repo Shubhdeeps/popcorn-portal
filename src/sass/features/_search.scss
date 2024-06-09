@@ -1,0 +1,26 @@
+.proxy-search-button {
+  background: $background-color;
+  border: 1px solid $border-color;
+  border-radius: $base-border-radius * 0.8;
+  display: flex;
+  align-items: center;
+  padding: $base-padding * 0.75 $base-padding;
+  color: $muted-color;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background: $secondary-color;
+  }
+  svg {
+    margin-right: $base-padding;
+  }
+  &__search-character {
+    margin-left: auto;
+    background: $secondary-color;
+    padding: $base-padding * 0.25 $base-padding;
+    border-radius: $base-border-radius * 0.25;
+  }
+}
+
+.search {
+}

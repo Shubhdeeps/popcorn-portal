@@ -6,7 +6,7 @@ export default function TextField({ ...props }: ITextFieldProps) {
   return (
     <div className="text-field">
       {searchSVG}
-      <input value={"abcd"} {...props} />
+      <input placeholder="search" {...props} />
     </div>
   );
 }
