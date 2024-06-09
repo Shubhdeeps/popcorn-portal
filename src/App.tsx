@@ -5,8 +5,6 @@
 import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
 import Layout from "./components/Layout";
-import TextField from "./components/TextField/input-text-field";
-import ModalWindow from "./components/Modal/modal-window";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -15,9 +13,6 @@ function App() {
 
   return (
     <Layout>
-      <ModalWindow>
-        <TextField />
-      </ModalWindow>
       <div className="max-w-50 mt-2">
         <br />
       </div>

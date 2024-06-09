@@ -23,4 +23,38 @@
 }
 
 .search {
+  &__textfield {
+    padding: $base-padding;
+  }
+
+  &__tabs {
+    padding: 0 $base-padding;
+    margin-bottom: -8px;
+
+    //no text select
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  &__tab {
+    font-weight: 600;
+    color: $muted-color;
+    padding: $base-padding;
+    cursor: pointer;
+
+    @include sm {
+      padding: $base-padding $base-padding * 2;
+    }
+  }
+  hr {
+    margin: $base-padding 0;
+    border-color: rgba(180, 180, 180, 0.25);
+  }
+  &__tab-active {
+    color: $primary-color;
+    border-bottom: 2px solid $primary-color;
+    line-height: 2rem;
+    transition: 0.2s ease-in-out;
+  }
 }

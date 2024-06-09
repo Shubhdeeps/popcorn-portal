@@ -11,22 +11,25 @@ export default function ModalWindow({
   visible = false,
   changeVisibility,
 }: IModalProps) {
-  // if (!visible) {
-  //   return <></>;
-  // }
+  if (!visible) {
+    return <></>;
+  }
 
   function handleOutsideClick() {
     changeVisibility(false);
   }
   return (
     <div onClick={handleOutsideClick} className="modal-window">
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        className="modal-window__container container"
-      >
-        {children}
+      <div className="container">
+        <div
+          onClick={(e) => {
+            //avoid child click to trigger parent click
+            e.stopPropagation();
+          }}
+          className="modal-window__container"
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

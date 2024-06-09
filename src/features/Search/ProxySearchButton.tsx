@@ -1,14 +1,17 @@
 import { searchSVG } from "@/assets/SearchIcon.svg";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 type IProxySearchProps = {
-  setTrigger: () => void;
+  setTrigger: (state: boolean) => void;
 };
-export default function ProxySearchButton() {
+export default function ProxySearchButton({ setTrigger }: IProxySearchProps) {
   useEffect(() => {
     function handleSearchKeydown(e: KeyboardEvent) {
       if (e.key === "/") {
-        console.log(e.key);
+        setTrigger(true);
+      }
+      if (e.key === "Escape") {
+        setTrigger(false);
       }
     }
     window.addEventListener("keydown", handleSearchKeydown);
@@ -17,7 +20,7 @@ export default function ProxySearchButton() {
     };
   }, []);
   return (
-    <div className="proxy-search-button">
+    <div onClick={() => setTrigger(true)} className="proxy-search-button">
       {searchSVG}
       <span>search</span>
       <span className="proxy-search-button__search-character"> / </span>
