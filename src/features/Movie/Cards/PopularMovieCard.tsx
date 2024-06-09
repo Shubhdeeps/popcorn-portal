@@ -1,4 +1,4 @@
-import Button from "@/components/Buttons/Button";
+import Button from "@/components/Button/button";
 import Card, {
   CardContent,
   CardDescription,
@@ -7,7 +7,7 @@ import Card, {
   CardImage,
   CardRating,
   CardTitle,
-} from "@/components/Card";
+} from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
 
 type INowPlayingProps = Pick<

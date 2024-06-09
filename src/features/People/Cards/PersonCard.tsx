@@ -1,4 +1,4 @@
-import { CardDescription } from "@/components/Card";
+import { CardDescription } from "@/components/Card/base-card";
 import { Person } from "@/models/Person.model";
 import { APIEndpoints } from "@/utils/endpoints";
 

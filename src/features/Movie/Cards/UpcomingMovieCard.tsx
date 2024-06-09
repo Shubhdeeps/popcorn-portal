@@ -1,11 +1,9 @@
 import { playSVG } from "@/assets/Play.svg";
-import Card, {
-  CardContent,
+import {
   CardDescription,
   CardImage,
   CardRating,
-  CardTitle,
-} from "@/components/Card";
+} from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
 
 type IUpcomingMovieProps = Pick<

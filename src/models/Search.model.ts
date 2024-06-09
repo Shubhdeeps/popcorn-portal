@@ -42,4 +42,5 @@ export type SearchModel = (Person | Movie | TvShow) & {
   id: number;
   adult: boolean;
   popularity: number;
+  media_type: "tv" | "person" | "movie";
 };

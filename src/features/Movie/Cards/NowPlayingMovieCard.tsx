@@ -3,7 +3,7 @@ import Card, {
   CardImage,
   CardRating,
   CardTitle,
-} from "@/components/Card";
+} from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
 
 type INowPlayingProps = Pick<

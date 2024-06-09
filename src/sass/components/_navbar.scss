@@ -9,6 +9,25 @@
   padding: 0.5rem 0.15rem;
   background: $background-color;
   border-bottom: 1px solid $border-color;
+
+  &__inner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    display: none;
+    @include sm {
+      display: block;
+    }
+  }
+  &__search-bar {
+    width: 100%;
+
+    @include sm {
+      width: 350px;
+    }
+  }
 }
 
 .app-logo {
