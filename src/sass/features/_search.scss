@@ -42,9 +42,14 @@
     color: $muted-color;
     padding: $base-padding;
     cursor: pointer;
+    // border: 1px solid red;
 
     @include sm {
       padding: $base-padding $base-padding * 2;
+    }
+
+    svg {
+      margin-right: 0.25rem;
     }
   }
   hr {
@@ -55,6 +60,10 @@
     color: $primary-color;
     border-bottom: 2px solid $primary-color;
     line-height: 2rem;
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;
+
+    path {
+      fill: $primary-color;
+    }
   }
 }
