@@ -1,0 +1,21 @@
+@use "sass:math";
+.text-field {
+  background: $card-color;
+  border: 1px solid $border-color;
+  border-radius: $base-border-radius * 0.8;
+  display: flex;
+  align-items: center;
+  padding: $base-padding;
+  input {
+    color: $muted-color;
+    width: 100%;
+    padding: 0rem 0.5rem;
+    background: none;
+    border: none;
+    outline: none;
+
+    :active {
+      outline: none;
+    }
+  }
+}

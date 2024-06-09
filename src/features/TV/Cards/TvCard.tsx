@@ -4,7 +4,7 @@ import Card, {
   CardImage,
   CardRating,
   CardTitle,
-} from "@/components/Card";
+} from "@/components/Card/base-card";
 import { TvShow } from "@/models/TV.model";
 import { APIEndpoints } from "@/utils/endpoints";
 

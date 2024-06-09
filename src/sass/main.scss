@@ -12,13 +12,10 @@
 @import "./root/grid";
 
 // Components
-// Buttons
 @import "./components/buttons/base-button";
-// Layout
 @import "./components/layout/navbar";
-
-// Cards
 @import "./components/cards/base-card";
+@import "./components/textField/text-field";
 
 // Features
 @import "./features/now-playing-card";

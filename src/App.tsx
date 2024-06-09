@@ -5,6 +5,7 @@
 import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
 import Layout from "./components/Layout";
+import TextField from "./components/TextField/input-text-field";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -13,7 +14,10 @@ function App() {
 
   return (
     <Layout>
-      <div></div>
+      <div className="max-w-50 mt-2">
+        <TextField />
+      </div>
+
       {/* <div className="">
         <h2 className="">Grid System</h2>
         <div className="row border-1">
