@@ -5,46 +5,51 @@ import {
   CardRating,
 } from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
+import { APIEndpoints } from "@/utils/endpoints";
 
 type IUpcomingMovieProps = Pick<
   MovieModel,
   | "title"
-  | "overview"
   | "id"
   | "vote_average"
   | "poster_path"
   | "release_date"
   | "backdrop_path"
 >;
-export default function UpcomingMovieCard() {
-  const date = Date.parse("2024-06-05");
+export default function UpcomingMovieCard({
+  backdrop_path,
+  id,
+  poster_path,
+  release_date,
+  title,
+}: IUpcomingMovieProps) {
+  const date = Date.parse(release_date);
   const now = Date.now();
   const isReleased = now > date ? "Released" : "Releasing";
-  console.log({ now, date, isReleased });
   return (
     <div className="upcoming-wrapper">
       <img
         className="upcoming-wrapper__image"
-        src="https://image.tmdb.org/t/p/w500/2JmEZtZsGVYvcUeMWze9qb1Ui03.jpg"
+        src={`${APIEndpoints.Image}${backdrop_path}`}
       />
       <div className="upcoming-wrapper__body">
         <div className="upcoming-card">
           <div className="upcoming-card__content">
             <CardImage
               className="upcoming-card__card-image"
-              src="https://image.tmdb.org/t/p/w500/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg"
+              src={`${APIEndpoints.Image}${poster_path}`}
             />
             <div className="d-flex gap-2 align-center">
               <span>{playSVG}</span>
               <div className="d-flex flex-col">
-                <div className="upcoming-card__title">
-                  Glen Powell and Adria Arjona Star in 'Hit Man'
-                </div>
+                <div className="upcoming-card__title">{title}</div>
                 <div className="upcoming-card__sub-title">
                   Watch the Trailer
                 </div>
                 <CardRating rating={7.6} />
-                <CardDescription>{isReleased} on 2024-06-05</CardDescription>
+                <CardDescription>
+                  {isReleased} on {release_date}
+                </CardDescription>
               </div>
             </div>
           </div>

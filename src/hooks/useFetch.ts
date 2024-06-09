@@ -57,7 +57,6 @@ export function useFetch<T>(
         }
 
         const _response = await axios(config);
-        console.log({ _response });
 
         const data = _response.data;
         setState({
@@ -65,6 +64,7 @@ export function useFetch<T>(
           payload: data,
         });
       } catch (error) {
+        console.log({ error });
         if (error instanceof AxiosError) {
           // Axios error
           setState({

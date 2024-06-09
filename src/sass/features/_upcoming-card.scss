@@ -1,6 +1,15 @@
 .upcoming-wrapper {
   position: relative;
+  width: 98vw;
   height: auto;
+
+  @include md {
+    width: 520px;
+  }
+  @include lg {
+    width: 740px;
+  }
+
   &__image {
     border-radius: $base-border-radius;
     width: 100%;

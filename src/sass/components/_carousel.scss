@@ -1,0 +1,21 @@
+.carousel {
+  //   border: 1px solid red;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  height: fit-content;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 24px;
+
+  &__slide {
+    scroll-snap-align: start; //center
+  }
+
+  .btn {
+    position: absolute;
+    z-index: 10;
+    right: 20px;
+    top: 20px;
+  }
+}
