@@ -2,7 +2,7 @@ import React from "react";
 
 type IModalProps = {
   children: React.ReactNode;
-  visible: boolean;
+  visible?: boolean;
   changeVisibility: (state: boolean) => void;
 };
 
@@ -11,8 +11,23 @@ export default function ModalWindow({
   visible = false,
   changeVisibility,
 }: IModalProps) {
-  if (!visible) {
-    return <></>;
+  // if (!visible) {
+  //   return <></>;
+  // }
+
+  function handleOutsideClick() {
+    changeVisibility(false);
   }
-  return <div className="modal-window">{children}</div>;
+  return (
+    <div onClick={handleOutsideClick} className="modal-window">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="modal-window__container container"
+      >
+        {children}
+      </div>
+    </div>
+  );
 }

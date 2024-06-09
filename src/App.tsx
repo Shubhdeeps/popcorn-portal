@@ -15,11 +15,11 @@ function App() {
 
   return (
     <Layout>
+      <ModalWindow>
+        <TextField />
+      </ModalWindow>
       <div className="max-w-50 mt-2">
         <br />
-        <ModalWindow>
-          <TextField />
-        </ModalWindow>
       </div>
 
       {/* <div className="">

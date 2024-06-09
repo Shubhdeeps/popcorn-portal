@@ -12,11 +12,11 @@
 @import "./root/grid";
 
 // Components
-@import "./components/buttons/base-button";
-@import "./components/layout/navbar";
-@import "./components/cards/base-card";
-@import "./components/textField/text-field";
-
+@import "./components/base-button";
+@import "./components/navbar";
+@import "./components/base-card";
+@import "./components/text-field";
+@import "./components/modal-window";
 // Features
 @import "./features/now-playing-card";
 @import "./features/upcoming-card";
