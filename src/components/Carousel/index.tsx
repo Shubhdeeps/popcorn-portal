@@ -1,10 +1,5 @@
 import { useEffect, useRef } from "react";
 
-enum DirectionAndFlex {
-  horizontal = "flex-row",
-  vertical = "flex-col",
-}
-
 const CAROUSAL_TIMER_SECONDS = 5;
 export default function Carousel({
   children,
@@ -13,14 +8,13 @@ export default function Carousel({
   children: React.ReactNode[];
   direction?: "horizontal" | "vertical";
 }) {
-  const directionClx = DirectionAndFlex[direction];
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const totalChildren = children.length;
   console.log({ totalChildren });
 
   return (
-    <div ref={carouselRef} className={`carousel ${directionClx}`}>
+    <div ref={carouselRef} className={`carousel carousel__${direction}`}>
       {children.map((child, index) => {
         return (
           <Slide totalChild={totalChildren} index={index} key={index}>
@@ -48,7 +42,7 @@ function Slide({
     const firstLoad = setTimeout(() => {
       elemRef.current?.scrollIntoView({
         behavior: "smooth",
-        inline: "center",
+        inline: "start",
       });
     }, jumpTime);
     const totalJumpTime = totalChild * CAROUSAL_TIMER_SECONDS * 1000;
@@ -58,7 +52,7 @@ function Slide({
       timeout = setTimeout(() => {
         elemRef.current?.scrollIntoView({
           behavior: "smooth",
-          inline: "center",
+          inline: "start",
         });
       }, jumpTime);
     }, totalJumpTime);
