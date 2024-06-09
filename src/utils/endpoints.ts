@@ -6,6 +6,8 @@ export enum APIEndpoints {
   Languages = `${baseURL}configuration/languages`,
   Movies = `${baseURL}discover/movie`,
   TV = `${baseURL}discover/tv`,
+  TVOnAir = `${baseURL}tv/on_the_air?language=en-US&page=1`,
+  TVPopular = `${baseURL}tv/popular?language=en-US&page=1`,
   GenreList = `${baseURL}genre/movie/list`,
   NowPlaying = `${baseURL}movie/now_playing`,
   Upcoming = `${baseURL}movie/upcoming`,
@@ -13,6 +15,8 @@ export enum APIEndpoints {
   Popular = `${baseURL}movie/popular`,
   PeoplePopular = `${baseURL}person/popular`,
   Search = `${baseURL}search/multi?query=`,
+  Image = `http://image.tmdb.org/t/p/w500`,
+  Youtube = `https://www.youtube.com/watch?v=`,
 }
 
 // recommendations

@@ -346,6 +346,30 @@ $utilities: (
       "unset": "unset",
     ),
   ),
+  "justify-content": (
+    "prefix": "justify",
+    "values": (
+      "center": center,
+      "baseline": baseline,
+      "end": end,
+      "flex-end": flex-end,
+      "flex-start": flex-start,
+      "normal": normal,
+      "start": start,
+    ),
+  ),
+  "align-items": (
+    "prefix": "align",
+    "values": (
+      "center": center,
+      "baseline": baseline,
+      "end": end,
+      "flex-end": flex-end,
+      "flex-start": flex-start,
+      "normal": normal,
+      "start": start,
+    ),
+  ),
   "flex-grow": (
     "prefix": "flex",
     "values": (
