@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Navbar from "./Navbar";
+import { useState } from "react";
+import Navbar from "./navbar";
 import ModalWindow from "../Modal/modal-window";
 import SearchContent from "@/features/Search/SearchContent";
 import { Outlet } from "react-router-dom";

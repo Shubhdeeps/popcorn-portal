@@ -7,5 +7,7 @@
   "/movie/now_playing": "/movie-now_playing",
   "/genre/movie/list": "/genre-movie-list",
   "/discover/tv": "/discover-tv",
-  "/discover/movie": "/discover-movie"
+  "/discover/movie": "/discover-movie",
+  "/tv/on_the_air": "/on-air-tv",
+  "/tv/popular": "/tv-popular"
 }

@@ -9,7 +9,12 @@ import { TvShow } from "@/models/TV.model";
 import { APIEndpoints } from "@/utils/endpoints";
 
 type ITVProps = Pick<TvShow, "poster_path" | "id" | "name" | "vote_average">;
-export default function TVCard() {
+export default function TVCard({
+  id,
+  name,
+  poster_path,
+  vote_average,
+}: ITVProps) {
   return (
     <Card className="tv-card">
       <div className="tv-card__svg-wrapper">
@@ -19,13 +24,13 @@ export default function TVCard() {
           <a>Watch now</a>
         </div>
         <CardImage
-          src={`${APIEndpoints.Image}/mu3lEhGovyhKHPJzb7HNYtZUCDT.jpg`}
+          src={`${APIEndpoints.Image}/${poster_path}`}
           className="tv-card__image"
         />
       </div>
       <CardHeader>
-        <CardTitle className="tv-card__title">Binnelanders</CardTitle>
-        <CardRating rating={5.5} />
+        <CardTitle className="tv-card__title">{name}</CardTitle>
+        <CardRating rating={vote_average} />
       </CardHeader>
     </Card>
   );

@@ -4,9 +4,11 @@ const CAROUSAL_TIMER_SECONDS = 5;
 export default function Carousel({
   children,
   direction = "horizontal",
+  animated = false,
 }: {
   children: React.ReactNode[];
   direction?: "horizontal" | "vertical";
+  animated?: boolean;
 }) {
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
@@ -17,7 +19,12 @@ export default function Carousel({
     <div ref={carouselRef} className={`carousel carousel__${direction}`}>
       {children.map((child, index) => {
         return (
-          <Slide totalChild={totalChildren} index={index} key={index}>
+          <Slide
+            animated={animated}
+            totalChild={totalChildren}
+            index={index}
+            key={index}
+          >
             {child}
           </Slide>
         );
@@ -30,14 +37,20 @@ function Slide({
   children,
   index,
   totalChild,
+  animated,
 }: {
   children: React.ReactNode;
   index: number;
   totalChild: number;
+  animated?: boolean;
 }) {
   const elemRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!animated) {
+      //skip animation if not animated
+      return;
+    }
     const jumpTime = index * CAROUSAL_TIMER_SECONDS * 1000;
     const firstLoad = setTimeout(() => {
       elemRef.current?.scrollIntoView({
@@ -62,7 +75,7 @@ function Slide({
       clearTimeout(firstLoad);
       clearInterval(interval);
     };
-  }, [index, totalChild]);
+  }, [animated, index, totalChild]);
   return (
     <div ref={elemRef} className="carousel__slide">
       {children}

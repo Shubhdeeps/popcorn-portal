@@ -8,7 +8,6 @@ import UpcomingMovieMiniCard from "../Cards/UpcomingMovieMiniCard";
 
 export default function UpcomingMoviesGrid() {
   const response = useFetch<MoviesUpcoming>(APIEndpoints.Upcoming);
-  console.log({ response });
 
   return (
     <>

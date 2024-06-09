@@ -22,7 +22,6 @@ export default function UpcomingMovieMiniCard({
   poster_path,
 }: INowPlayingProps) {
   const posterPath = `${APIEndpoints.Image}${poster_path}`;
-  console.log({ posterPath });
   return (
     <Card className="upcoming-movie-mini-card">
       <CardImage className="upcoming-movie-mini-card__image" src={posterPath} />
