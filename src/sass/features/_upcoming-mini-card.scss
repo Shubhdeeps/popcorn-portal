@@ -1,0 +1,9 @@
+.upcoming-movie-mini-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+
+  &__image {
+    min-width: 6rem;
+  }
+}

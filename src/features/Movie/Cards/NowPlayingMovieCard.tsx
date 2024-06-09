@@ -1,15 +1,15 @@
-import { starSVG } from "@/assets/Star.svg";
 import Card, {
-  CardContent,
   CardHeader,
   CardImage,
   CardRating,
   CardTitle,
-} from "@/features/Card";
+} from "@/components/Card";
 import { MovieModel } from "@/models/Movie.model";
 
-interface INowPlayingProps
-  extends Pick<MovieModel, "title" | "release_date" | "id" | "vote_average"> {}
+type INowPlayingProps = Pick<
+  MovieModel,
+  "title" | "release_date" | "id" | "vote_average"
+>;
 export default function NowPlayingMovieCard() {
   return (
     <Card className="now-playing-movie-card">

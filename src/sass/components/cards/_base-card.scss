@@ -66,14 +66,15 @@
   }
 
   &__card-header {
-    padding-top: $base-padding / 2;
+    padding-top: $base-padding * 0.5;
     padding-bottom: 0;
   }
   &__card-content {
-    padding-top: $base-padding / 2;
+    padding-top: $base-padding * 0.5;
     padding-bottom: $base-padding;
   }
   &__card-footer {
+    margin-top: auto;
     border-top: 1px solid $border-color;
     padding-top: $base-padding;
   }

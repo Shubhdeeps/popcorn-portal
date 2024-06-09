@@ -5,7 +5,7 @@ type ICardProps = {
   children: React.ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 interface ICardDescriptionProps extends HTMLAttributes<HTMLDivElement> {
-  children: string;
+  children: string | React.ReactNode;
 }
 interface ICardHeaderProps extends ICardProps {}
 interface ICardFooterProps extends ICardProps {}

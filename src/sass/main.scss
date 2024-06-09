@@ -16,5 +16,13 @@
 @import "./components/buttons/base-button";
 // Layout
 @import "./components/layout/navbar";
-@import "./components/cards/now-playing-card"; // Features
-@import "./features/base-card";
+
+// Cards
+@import "./components/cards/base-card";
+
+// Features
+@import "./features/now-playing-card";
+@import "./features/upcoming-card";
+@import "./features/upcoming-mini-card";
+@import "./features/person-card";
+@import "./features/tv-card";

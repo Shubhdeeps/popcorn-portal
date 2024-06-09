@@ -5,8 +5,12 @@
 import { useFetch } from "@/hooks/useFetch";
 import { APIEndpoints } from "@/utils/endpoints";
 import Layout from "./components/Layout";
-import PopularMovieCard from "./components/Cards/Movie/PopularMovieCard";
-import NowPlayingMovieCard from "./components/Cards/Movie/NowPlayingMovieCard";
+import PopularMovieCard from "./features/Movie/Cards/PopularMovieCard";
+import NowPlayingMovieCard from "./features/Movie/Cards/NowPlayingMovieCard";
+import UpcomingMovieCard from "./features/Movie/Cards/UpcomingMovieCard";
+import UpcomingMovieMiniCard from "./features/Movie/Cards/UpcomingMovieMiniCard";
+import PersonCard from "./features/People/Cards/PersonCard";
+import TVCard from "./features/TV/Cards/TvCard";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
@@ -15,6 +19,16 @@ function App() {
 
   return (
     <Layout>
+      <div className="max-w-50">
+        <TVCard />
+      </div>
+      <PersonCard />
+      <div className="max-w-100 pt-2 pb-2">
+        <UpcomingMovieCard />
+        <div className="max-w-50">
+          <UpcomingMovieMiniCard />
+        </div>
+      </div>
       <div className="max-w-50">
         <NowPlayingMovieCard />
       </div>
