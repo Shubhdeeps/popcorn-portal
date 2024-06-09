@@ -1,13 +1,6 @@
-import { movieSVG, personSVG, tvSVG } from "@/assets/TabIcons";
+import { tabTypeAndIcon } from "@/assets/TabIcons";
 import { SearchTabs } from "@/models/SearchTabs.model";
 
-const tabTypeAndIcon: Record<SearchTabs, (str: string) => JSX.Element | null> =
-  {
-    All: () => null,
-    TV: tvSVG,
-    Movie: movieSVG,
-    People: personSVG,
-  };
 export default function SearchOptionTab({
   type,
   isActive,
@@ -21,7 +14,7 @@ export default function SearchOptionTab({
   return (
     <span
       onClick={() => handleSetActiveTab(type)}
-      className={`search__tab ${activeClx}`}
+      className={`uppercase search__tab ${activeClx}`}
     >
       {tabTypeAndIcon[type](activeClx)} {type}
     </span>

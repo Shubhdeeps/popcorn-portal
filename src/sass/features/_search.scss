@@ -29,12 +29,21 @@
 
   &__tabs {
     padding: 0 $base-padding;
-    margin-bottom: -8px;
+    // margin-bottom: -8px;
 
     //no text select
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    min-height: 50px;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      width: 0em;
+    }
+  }
+  &__tabs-wrapper {
+    min-width: max-content;
   }
 
   &__tab {
@@ -53,7 +62,8 @@
     }
   }
   hr {
-    margin: $base-padding 0;
+    margin-top: -14px;
+    margin-bottom: 0;
     border-color: rgba(180, 180, 180, 0.25);
   }
   &__tab-active {
@@ -64,6 +74,33 @@
 
     path {
       fill: $primary-color;
+    }
+  }
+
+  &__result {
+    padding: $base-padding;
+    overflow-y: auto;
+    max-height: 350px;
+  }
+}
+
+.search-result {
+  margin-top: $base-margin;
+  background: $secondary-color;
+  filter: brightness(1.1);
+  cursor: pointer;
+  border-radius: $base-border-radius;
+  &:hover {
+    filter: brightness(1.2);
+  }
+  &__content {
+    padding: $base-padding;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      min-width: 20px;
     }
   }
 }

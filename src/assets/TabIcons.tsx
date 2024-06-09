@@ -1,4 +1,6 @@
-export const tvSVG = (clx: string) => (
+import { SearchTabs } from "@/models/SearchTabs.model";
+
+const tvSVG = (clx: string) => (
   <svg
     className={clx}
     width="12"
@@ -14,7 +16,7 @@ export const tvSVG = (clx: string) => (
   </svg>
 );
 
-export const movieSVG = (clx: string) => (
+const movieSVG = (clx: string) => (
   <svg
     className={clx}
     width="12"
@@ -30,7 +32,7 @@ export const movieSVG = (clx: string) => (
   </svg>
 );
 
-export const personSVG = (clx: string) => (
+const personSVG = (clx: string) => (
   <svg
     className={clx}
     width="12"
@@ -45,3 +47,13 @@ export const personSVG = (clx: string) => (
     />
   </svg>
 );
+
+export const tabTypeAndIcon: Record<
+  SearchTabs,
+  (str: string) => JSX.Element | null
+> = {
+  all: () => null,
+  tv: tvSVG,
+  movie: movieSVG,
+  person: personSVG,
+};
