@@ -5,7 +5,8 @@ import Spinner from "@/components/Spinner";
 import { MovieModel } from "@/models/Movie.model";
 
 export default function NowPlayingMoviesGrid() {
-  const { error, loading, results } = useFetch<MovieModel>("NowPlaying");
+  const { error, fetchMore, hasMore, loading, results } =
+    useFetch<MovieModel>("NowPlaying");
 
   return (
     <div className="general-card-grid">

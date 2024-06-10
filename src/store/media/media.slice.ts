@@ -26,8 +26,6 @@ const mediaSlice = createSlice({
     builder
       .addCase(mediaReducerAsync.pending, (state, action) => {
         const key = action.meta.arg.APIKey;
-
-        console.log({ lodinngAction: key });
         const previousState = state.data[key] || {};
         Object.assign(previousState, { loading: true });
         state.data[key] = previousState;
@@ -35,11 +33,14 @@ const mediaSlice = createSlice({
       .addCase(mediaReducerAsync.fulfilled, (state, action) => {
         const key = action.meta.arg.APIKey;
         //update the state with the key
+        const previousResult = state.data[key]?.results || [];
+        const newResult = [...previousResult, ...action.payload.results];
         state.data[key] = {
           error: null,
           loading: false,
           APIKey: key,
           ...action.payload,
+          results: newResult,
         };
       })
       .addCase(mediaReducerAsync.rejected, (state, action) => {

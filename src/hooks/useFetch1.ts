@@ -1,10 +1,11 @@
 import { AppDispatch, RootState } from "@/store";
 import { mediaReducerAsync } from "@/store/media/media.slice";
 import { APIEndpointKeys, APIEndpoints } from "@/utils/endpoints";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
+  const [scrolledToEnd, setScrolledToEnd] = useState<boolean>(false);
   const data = useSelector((state: RootState) => state.media.data)[APIKey];
   const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
@@ -30,27 +31,27 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
     }
   }, [data]);
 
-  function fetchMore() {
-    if (
-      currentPageNumber.current.totalPages <=
-      currentPageNumber.current.currentPage
-    ) {
-      //all pages were fetched
-      return;
-    }
-    dispatch(
-      mediaReducerAsync({
-        APIKey: APIKey,
-        ApiEndpoint: apiEndpoint,
-      })
-    );
-  }
+  // function fetchMore() {
+  //   if (
+  //     currentPageNumber.current.totalPages <=
+  //     currentPageNumber.current.currentPage
+  //   ) {
+  //     //all pages were fetched
+  //     return;
+  //   }
+  //   dispatch(
+  //     mediaReducerAsync({
+  //       APIKey: APIKey,
+  //       ApiEndpoint: apiEndpoint, //update it with page number
+  //     })
+  //   );
+  // }
 
   return {
     loading: data?.loading || false,
     error: data?.error || "",
     results: (data?.results || []) as T[],
     hasMore: data?.page < data?.total_pages || false, // for UI to show "No more movies"s
-    fetchMore,
+    setScrolledToEnd,
   } as const;
 }

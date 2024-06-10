@@ -9,7 +9,6 @@ export default function UpcomingMoviesGrid() {
   const { error, loading, results } = useFetch<MovieModel>("Upcoming");
 
   const dataArray = [...results];
-
   return (
     <>
       <div className="upcoming-movie-grid">
