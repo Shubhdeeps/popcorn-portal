@@ -1,16 +1,10 @@
 import { MovieModel } from "./Movie.model";
+import { Person } from "./Person.model";
+import { TvShow } from "./TV.model";
 
-export interface BaseResponse {
-  results: MovieModel[];
+export type APIResponseDataModel = {
+  results: MovieModel[] | TvShow[] | Person[];
   page: number;
   total_pages: number;
   total_results: number;
-}
-export interface MoviesUpcoming extends BaseResponse {
-  dates: {
-    maximum: string; //'2024-08-03'
-    minimum: string;
-  };
-}
-
-export interface MoviesTopRated extends BaseResponse {}
+};

@@ -1,8 +1,12 @@
 .headline-typography {
-  color: $primary-color;
-  font-weight: 700;
+  color: $foreground-color;
+  font-weight: 600;
   font-size: $font-size-lg;
   text-transform: uppercase;
-  line-height: 4rem;
-  text-align: center;
+  text-align: start;
+  padding-left: 1rem;
+  border-left: 3px solid $primary-color;
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 30%;
+  margin: 2rem 0;
 }

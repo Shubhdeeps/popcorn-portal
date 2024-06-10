@@ -1,5 +1,14 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
+type Element = React.DetailedReactHTMLElement<
+  {
+    className: string;
+    children: React.ReactNode;
+    key: number;
+    ref: React.RefObject<HTMLDivElement>;
+  },
+  HTMLDivElement
+>;
 const CAROUSAL_TIMER_SECONDS = 5;
 export default function Carousel({
   children,
@@ -11,23 +20,67 @@ export default function Carousel({
   animated?: boolean;
 }) {
   const carouselRef = useRef<HTMLDivElement | null>(null);
-
+  const refArray = useRef<Element[]>([]);
+  const indexOfCurrentChildInView = useRef(0);
   const totalChildren = children.length;
-  console.log({ totalChildren });
+
+  useEffect(() => {
+    if (!animated) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      //current element in focus
+      const element = refArray.current[indexOfCurrentChildInView.current];
+      //type cast the element
+      const ref = element.ref as React.MutableRefObject<HTMLDivElement>;
+
+      if (ref.current) {
+        const element = ref.current;
+
+        if (
+          carouselRef.current &&
+          carouselRef.current.scrollWidth > carouselRef.current.clientWidth
+        ) {
+          const elementRect = element.getBoundingClientRect();
+          const containerRect = carouselRef.current.getBoundingClientRect();
+          const parentOffset = carouselRef.current.scrollLeft || 0;
+          const scrollOffset =
+            elementRect.left - containerRect.left + parentOffset;
+
+          carouselRef.current.scrollTo({
+            left: scrollOffset,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      indexOfCurrentChildInView.current += 1;
+      if (indexOfCurrentChildInView.current >= refArray.current.length) {
+        //restart to zero
+        indexOfCurrentChildInView.current = 0;
+      }
+    }, CAROUSAL_TIMER_SECONDS * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [animated, totalChildren]);
 
   return (
     <div ref={carouselRef} className={`carousel carousel__${direction}`}>
       {children.map((child, index) => {
-        return (
-          <Slide
-            animated={animated}
-            totalChild={totalChildren}
-            index={index}
-            key={index}
-          >
-            {child}
-          </Slide>
-        );
+        // const newRef = React.createRef<HTMLDivElement>();
+        const newElement = React.createElement("div", {
+          className: "carousel__slide",
+          children: child,
+          key: index,
+          ref: React.createRef<HTMLDivElement>(),
+        });
+        if (animated) {
+          refArray.current = [...refArray.current, newElement];
+        }
+        return newElement;
       })}
     </div>
   );
@@ -52,12 +105,12 @@ function Slide({
       return;
     }
     const jumpTime = index * CAROUSAL_TIMER_SECONDS * 1000;
-    const firstLoad = setTimeout(() => {
-      elemRef.current?.scrollIntoView({
-        behavior: "smooth",
-        inline: "start",
-      });
-    }, jumpTime);
+    // const firstLoad = setTimeout(() => {
+    //   elemRef.current?.scrollIntoView({
+    //     behavior: "smooth",
+    //     inline: "start",
+    //   });
+    // }, jumpTime);
     const totalJumpTime = totalChild * CAROUSAL_TIMER_SECONDS * 1000;
     let timeout: NodeJS.Timeout;
 
@@ -72,7 +125,7 @@ function Slide({
 
     return () => {
       clearTimeout(timeout);
-      clearTimeout(firstLoad);
+      // clearTimeout(firstLoad);
       clearInterval(interval);
     };
   }, [animated, index, totalChild]);

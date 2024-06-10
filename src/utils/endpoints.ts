@@ -19,6 +19,8 @@ export enum APIEndpoints {
   Youtube = `https://www.youtube.com/watch?v=`,
 }
 
+export type APIEndpointKeys = keyof typeof APIEndpoints;
+
 // recommendations
 // https://api.themoviedb.org/3/movie/{movie_id}/recommendations
 // https://api.themoviedb.org/3/movie/{movie_id}/similar
