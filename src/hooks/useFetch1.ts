@@ -23,6 +23,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
   }, [APIKey, apiEndpoint, dispatch]);
 
   useEffect(() => {
+    // Only for updating page numbers to avoid excessive refreshes and stale data
     if (data && data?.page) {
       currentPageNumber.current = {
         currentPage: data.page,
@@ -31,21 +32,22 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
     }
   }, [data]);
 
-  // function fetchMore() {
-  //   if (
-  //     currentPageNumber.current.totalPages <=
-  //     currentPageNumber.current.currentPage
-  //   ) {
-  //     //all pages were fetched
-  //     return;
-  //   }
-  //   dispatch(
-  //     mediaReducerAsync({
-  //       APIKey: APIKey,
-  //       ApiEndpoint: apiEndpoint, //update it with page number
-  //     })
-  //   );
-  // }
+  useEffect(() => {
+    //triggered when user scrolled to end to fetch more data
+    if (
+      currentPageNumber.current.totalPages <=
+      currentPageNumber.current.currentPage
+    ) {
+      //all pages were fetched
+      return;
+    }
+    dispatch(
+      mediaReducerAsync({
+        APIKey: APIKey,
+        ApiEndpoint: apiEndpoint, //update it with page number
+      })
+    );
+  }, [APIKey, apiEndpoint, dispatch, scrolledToEnd]);
 
   return {
     loading: data?.loading || false,
