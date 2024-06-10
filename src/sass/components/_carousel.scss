@@ -1,0 +1,30 @@
+.carousel {
+  //   border: 1px solid red;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  gap: 2rem;
+
+  &__horizontal {
+    height: fit-content;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    flex-direction: row;
+  }
+
+  &__vertical {
+    flex-direction: column;
+    width: fit-content;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 0 24px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
+  &__slide {
+    scroll-snap-align: start; //center
+  }
+}

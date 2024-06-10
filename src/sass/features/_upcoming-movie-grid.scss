@@ -1,0 +1,91 @@
+.upcoming-movie-grid {
+  display: flex;
+  gap: 2rem;
+  &__carousel-wrapper {
+    position: relative;
+    width: 340px;
+    height: auto;
+    @include sm {
+      width: 420px;
+    }
+    @include md {
+      width: 520px;
+    }
+    @include lg {
+      width: 740px;
+    }
+  }
+  &__gradient {
+    position: absolute;
+    height: 101%;
+    right: -10px;
+    top: -1px;
+    z-index: 10;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(9, 9, 11, 0.8),
+      $background-color,
+      $background-color
+    );
+
+    width: 2rem;
+    @include sm {
+      width: 7rem;
+    }
+    @include md {
+      width: 15rem;
+    }
+  }
+
+  .gradient-wrapper {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+
+    .horizontal-gradient {
+      position: absolute;
+      left: 0px;
+      bottom: -2px;
+      height: 8rem;
+      width: 100%;
+      z-index: 10;
+      background: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(9, 9, 11, 0.8),
+        $background-color,
+        $background-color
+      );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 $base-padding;
+
+      a {
+        color: $link-color;
+        font-size: $font-size-md;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+        display: none;
+        @include lg {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__mini-carousel-wrapper {
+    position: relative;
+    width: auto;
+    display: none;
+    height: 400px;
+    overflow: hidden;
+    @include lg {
+      display: block;
+    }
+  }
+}

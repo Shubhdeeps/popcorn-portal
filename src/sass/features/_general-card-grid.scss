@@ -1,0 +1,9 @@
+.general-card-grid {
+  &__card {
+    width: 220px;
+
+    @include md {
+      width: 260px;
+    }
+  }
+}

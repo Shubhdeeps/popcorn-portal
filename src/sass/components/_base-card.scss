@@ -1,6 +1,9 @@
 @use "sass:math";
 
 .card {
+  display: flex;
+  flex-direction: column;
+
   padding: $base-padding;
   background-color: $card-color;
   border: 1px solid $border-color;

@@ -1,5 +1,7 @@
 .now-playing-movie-card {
+  height: 340px;
   a {
+    margin-top: auto;
     color: $link-color;
     font-size: $font-size-base;
   }
