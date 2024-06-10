@@ -1,11 +1,11 @@
 import { AppDispatch, RootState } from "@/store";
-import { moviesReducerAsync } from "@/store/movie/movie.slice";
+import { mediaReducerAsync } from "@/store/media/media.slice";
 import { APIEndpointKeys, APIEndpoints } from "@/utils/endpoints";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
-  const data = useSelector((state: RootState) => state.movies.data)[APIKey];
+  const data = useSelector((state: RootState) => state.media.data)[APIKey];
   const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
   const currentPageNumber = useRef({
@@ -14,7 +14,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
   });
   useEffect(() => {
     dispatch(
-      moviesReducerAsync({
+      mediaReducerAsync({
         APIKey: APIKey,
         ApiEndpoint: apiEndpoint,
       })
@@ -39,7 +39,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
       return;
     }
     dispatch(
-      moviesReducerAsync({
+      mediaReducerAsync({
         APIKey: APIKey,
         ApiEndpoint: apiEndpoint,
       })

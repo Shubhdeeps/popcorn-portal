@@ -3,28 +3,28 @@ import axiosFetch from "@/utils/axiosFetch";
 import { APIEndpointKeys } from "@/utils/endpoints";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-type MovieDataModel = APIResponseDataModel & {
+type MediaDataModel = APIResponseDataModel & {
   loading: boolean;
   error: string | undefined;
   APIKey: APIEndpointKeys; //keys of endpoint
 };
 
-interface MovieStoreState {
+interface MediaStoreState {
   // record: Key as API key name and values as API response
-  data: Record<APIEndpointKeys | string, MovieDataModel>;
+  data: Record<APIEndpointKeys | string, MediaDataModel>;
 }
 
-const initialState: MovieStoreState = {
+const initialState: MediaStoreState = {
   data: {},
 };
 
-const moviesSlice = createSlice({
-  name: "movies",
+const mediaSlice = createSlice({
+  name: "media",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(moviesReducerAsync.pending, (state, action) => {
+      .addCase(mediaReducerAsync.pending, (state, action) => {
         const key = action.meta.arg.APIKey;
 
         console.log({ lodinngAction: key });
@@ -32,7 +32,7 @@ const moviesSlice = createSlice({
         Object.assign(previousState, { loading: true });
         state.data[key] = previousState;
       })
-      .addCase(moviesReducerAsync.fulfilled, (state, action) => {
+      .addCase(mediaReducerAsync.fulfilled, (state, action) => {
         const key = action.meta.arg.APIKey;
         //update the state with the key
         state.data[key] = {
@@ -42,7 +42,7 @@ const moviesSlice = createSlice({
           ...action.payload,
         };
       })
-      .addCase(moviesReducerAsync.rejected, (state, action) => {
+      .addCase(mediaReducerAsync.rejected, (state, action) => {
         console.log({ action });
         const key = action.meta.arg.APIKey;
         const error = action.error.message;
@@ -52,8 +52,8 @@ const moviesSlice = createSlice({
   },
 });
 
-export const moviesReducerAsync = createAsyncThunk(
-  "movies/moviesDataAsync",
+export const mediaReducerAsync = createAsyncThunk(
+  "media/mediaDataAsync",
   async (request: { APIKey: APIEndpointKeys; ApiEndpoint: string }) => {
     // const ApiEndPoint = APIEndpoints[request.APIKey];
     await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -62,5 +62,5 @@ export const moviesReducerAsync = createAsyncThunk(
   }
 );
 
-const moviesReducer = moviesSlice.reducer;
-export default moviesReducer;
+const mediaReducer = mediaSlice.reducer;
+export default mediaReducer;
