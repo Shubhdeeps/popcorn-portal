@@ -10,15 +10,19 @@ import { APIEndpoints } from "@/utils/endpoints";
 type INowPlayingProps = Pick<
   MovieModel,
   "title" | "id" | "vote_average" | "poster_path"
->;
+> & {
+  isLoading?: boolean;
+};
+
 export default function NowPlayingMovieCard({
   id,
   title,
   vote_average,
   poster_path,
+  isLoading = false,
 }: INowPlayingProps) {
   return (
-    <Card className="now-playing-movie-card">
+    <Card isLoading={isLoading} className="now-playing-movie-card">
       <CardImage
         src={`${APIEndpoints.Image}${poster_path}`}
         className="now-playing-movie-card__card-image"

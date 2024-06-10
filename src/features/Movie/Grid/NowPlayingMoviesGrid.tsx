@@ -1,17 +1,18 @@
 import NowPlayingMovieCard from "../Cards/NowPlayingMovieCard";
 import { useFetch } from "@/hooks/useFetch1";
 import Carousel from "@/components/Carousel";
-import Spinner from "@/components/Spinner";
 import { MovieModel } from "@/models/Movie.model";
+import { skeletonGenerator } from "@/utils/skeletonGenerator";
 
 export default function NowPlayingMoviesGrid() {
   const { error, loading, results } = useFetch<MovieModel>("NowPlaying");
+  const array = skeletonGenerator(results, loading);
 
   return (
     <div className="general-card-grid">
       <div>
         <Carousel>
-          {results.map((media) => {
+          {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
                 <NowPlayingMovieCard {...media} />
@@ -22,8 +23,6 @@ export default function NowPlayingMoviesGrid() {
       </div>
       {/* Error */}
       {Boolean(error) && <div>{error}</div>}
-      {/* Spinner state */}
-      {loading && <Spinner />}
     </div>
   );
 }

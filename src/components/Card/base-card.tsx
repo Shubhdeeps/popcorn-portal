@@ -1,15 +1,20 @@
 import { starSVG } from "@/assets/Star.svg";
 import { HTMLAttributes, ImgHTMLAttributes } from "react";
 
-type ICardProps = {
+type ICardBaseProps = {
   children: React.ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
+
+type ICardProps = ICardBaseProps & {
+  isLoading?: boolean;
+};
+
 interface ICardDescriptionProps extends HTMLAttributes<HTMLDivElement> {
   children: string | React.ReactNode;
 }
-interface ICardHeaderProps extends ICardProps {}
-interface ICardFooterProps extends ICardProps {}
-interface ICardContentProps extends ICardProps {}
+interface ICardHeaderProps extends ICardBaseProps {}
+interface ICardFooterProps extends ICardBaseProps {}
+interface ICardContentProps extends ICardBaseProps {}
 type ICardImageProps = ImgHTMLAttributes<HTMLImageElement>;
 interface IMovieRating {
   rating: number | string;
@@ -23,8 +28,12 @@ interface IMovieRating {
  * CardHeader
  * CardImage
  */
-function Card({ children, ...props }: ICardProps) {
-  return <div className={`card ${props.className || ""}`}>{children}</div>;
+function Card({ children, isLoading, ...props }: ICardProps) {
+  return (
+    <div className={`card  ${props.className || ""}`}>
+      {isLoading ? <div id="skeleton" /> : <>{children}</>}
+    </div>
+  );
 }
 
 function CardTitle({ children, ...props }: ICardContentProps) {

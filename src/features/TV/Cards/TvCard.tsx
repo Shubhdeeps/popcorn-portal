@@ -8,15 +8,18 @@ import Card, {
 import { TvShow } from "@/models/TV.model";
 import { APIEndpoints } from "@/utils/endpoints";
 
-type ITVProps = Pick<TvShow, "poster_path" | "id" | "name" | "vote_average">;
+type ITVProps = Pick<TvShow, "poster_path" | "id" | "name" | "vote_average"> & {
+  isLoading?: boolean;
+};
 export default function TVCard({
   id,
   name,
   poster_path,
   vote_average,
+  isLoading,
 }: ITVProps) {
   return (
-    <Card className="tv-card">
+    <Card isLoading={isLoading} className="tv-card">
       <div className="tv-card__svg-wrapper">
         <div className="tv-card__background-gradient" />
         <div className="tv-card__svg d-flex align-center gap-1">
