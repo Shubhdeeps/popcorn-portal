@@ -1,17 +1,18 @@
 import { useFetch } from "@/hooks/useFetch1";
 import Carousel from "@/components/Carousel";
-import Spinner from "@/components/Spinner";
 import { TvShow } from "@/models/TV.model";
 import TVCard from "../Cards/TvCard";
+import { skeletonGenerator } from "@/utils/skeletonGenerator";
 
 export default function TVOnAirGrid() {
   const { error, loading, results } = useFetch<TvShow>("TVOnAir");
+  const array = skeletonGenerator(results, loading);
 
   return (
     <div className="general-card-grid">
       <div>
         <Carousel>
-          {results.map((media) => {
+          {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
                 <TVCard {...media} />
@@ -22,8 +23,6 @@ export default function TVOnAirGrid() {
       </div>
       {/* Error */}
       {Boolean(error) && <div>{error}</div>}
-      {/* Spinner state */}
-      {loading && <Spinner />}
     </div>
   );
 }

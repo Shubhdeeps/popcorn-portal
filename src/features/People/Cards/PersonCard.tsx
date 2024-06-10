@@ -4,9 +4,16 @@ import { APIEndpoints } from "@/utils/endpoints";
 
 interface IPersonProps extends Pick<Person, "id" | "name" | "profile_path"> {
   rank?: number;
+  isLoading?: boolean;
 }
-export default function PersonCard({ id, name, profile_path }: IPersonProps) {
+export default function PersonCard({
+  id,
+  name,
+  profile_path,
+  isLoading,
+}: IPersonProps) {
   const isRank = false;
+
   return (
     <div className="person-card">
       <img

@@ -98,4 +98,24 @@
       margin-bottom: 1px;
     }
   }
+
+  #skeleton {
+    width: 100%;
+    height: 100%;
+    border-radius: $base-border-radius;
+
+    background: $card-color;
+    animation: skeleton-animation 0.6s infinite alternate-reverse;
+  }
+
+  @keyframes skeleton-animation {
+    from {
+      // background-color: $card-color;
+      filter: brightness(1);
+    }
+    to {
+      filter: brightness(2);
+      // background-color: $secondary-color;
+    }
+  }
 }

@@ -14,7 +14,7 @@ export default function TVOnAirGrid() {
           {results.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
-                <PersonCard {...media} />
+                <PersonCard isLoading {...media} />
               </div>
             );
           })}
