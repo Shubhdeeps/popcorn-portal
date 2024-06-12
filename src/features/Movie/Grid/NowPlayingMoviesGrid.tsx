@@ -3,6 +3,7 @@ import { useFetch } from "@/hooks/useFetch1";
 import Carousel from "@/components/Carousel";
 import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function NowPlayingMoviesGrid() {
   const { error, loading, results, setScrolledToEnd } =
@@ -22,8 +23,8 @@ export default function NowPlayingMoviesGrid() {
           })}
         </Carousel>
       </div>
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
       {/* Error */}
-      {Boolean(error) && <div>{error}</div>}
     </div>
   );
 }

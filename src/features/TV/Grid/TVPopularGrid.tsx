@@ -3,6 +3,7 @@ import Carousel from "@/components/Carousel";
 import { TvShow } from "@/models/TV.model";
 import TVCard from "../Cards/TvCard";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function TVOnAirGrid() {
   const { error, loading, results, setScrolledToEnd } =
@@ -23,7 +24,7 @@ export default function TVOnAirGrid() {
         </Carousel>
       </div>
       {/* Error */}
-      {Boolean(error) && <div>{error}</div>}
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
     </div>
   );
 }

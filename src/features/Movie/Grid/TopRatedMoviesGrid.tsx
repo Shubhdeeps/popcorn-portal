@@ -3,6 +3,7 @@ import Carousel from "@/components/Carousel";
 import PopularMovieCard from "../Cards/PopularMovieCard";
 import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function TopRatedMoviesGrid() {
   const { error, loading, results, setScrolledToEnd } =
@@ -23,7 +24,7 @@ export default function TopRatedMoviesGrid() {
         </Carousel>
       </div>
       {/* Error */}
-      {Boolean(error) && <div>{error}</div>}
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
     </div>
   );
 }

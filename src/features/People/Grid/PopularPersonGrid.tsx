@@ -3,6 +3,7 @@ import Carousel from "@/components/Carousel";
 import Spinner from "@/components/Spinner";
 import PersonCard from "../Cards/PersonCard";
 import { Person } from "@/models/Person.model";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function TVOnAirGrid() {
   const { error, loading, results, setScrolledToEnd } =
@@ -22,7 +23,7 @@ export default function TVOnAirGrid() {
         </Carousel>
       </div>
       {/* Error */}
-      {Boolean(error) && <div>{error}</div>}
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
       {/* Spinner state */}
       {loading && <Spinner />}
     </div>

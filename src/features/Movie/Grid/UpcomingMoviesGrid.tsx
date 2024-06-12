@@ -5,6 +5,7 @@ import { useFetch } from "@/hooks/useFetch1";
 import Spinner from "@/components/Spinner";
 import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function UpcomingMoviesGrid() {
   const { error, loading, results } = useFetch<MovieModel>("Upcoming");
@@ -56,7 +57,7 @@ export default function UpcomingMoviesGrid() {
         </div>
       </div>
       {/* Error */}
-      {Boolean(error) && <div>{error}</div>}
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
       {/* Spinner state */}
       {loading && <Spinner />}
     </>

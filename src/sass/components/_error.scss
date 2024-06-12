@@ -1,0 +1,12 @@
+.error-card {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__instructions {
+    font-weight: 300;
+    font-size: $font-size-sm;
+  }
+}
