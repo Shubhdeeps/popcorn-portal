@@ -5,9 +5,14 @@ import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
 
-export default function TopRatedMoviesGrid() {
-  const { error, loading, results, setScrolledToEnd } =
-    useFetch<MovieModel>("TopRated");
+type IProps = {
+  contentId: string;
+};
+export default function TopRatedMoviesGrid({ contentId }: IProps) {
+  const { error, loading, results, setScrolledToEnd } = useFetch<MovieModel>(
+    "TopRated",
+    contentId
+  );
   const array = skeletonGenerator(results, loading);
 
   return (

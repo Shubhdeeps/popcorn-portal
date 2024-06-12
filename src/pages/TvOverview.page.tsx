@@ -5,6 +5,7 @@ import VideoPlayer from "@/components/Video/video-player";
 import ActionBar from "@/features/Overview/ActionBar";
 import AdditionalOverviewData from "@/features/Overview/AdditionalData";
 import OverviewCard from "@/features/Overview/OverviewCard";
+import PersonGrid from "@/features/People/Grid/PopularPersonGrid";
 import TVSeasonCard from "@/features/TV/Cards/TvSeasonCard";
 import GeneralTvGrid from "@/features/TV/Grid/GeneralTvGrid";
 import { AppDispatch, RootState } from "@/store";
@@ -49,7 +50,9 @@ export default function TvOverviewPage() {
   const hasSeasons = Boolean(data.seasons.length);
 
   const recommendedEndpoint =
-    APIEndpoints.Recommendations + "/" + tvId + "/recommendations";
+    APIEndpoints.Recommendations + "/" + tvId + "/similar";
+
+  const castEndpoint = `${APIEndpoints.PersonTVCredits}/${tvId}/credits`;
 
   return (
     <div className="media-overview-page">
@@ -68,6 +71,16 @@ export default function TvOverviewPage() {
       <AdditionalOverviewData title="Language">
         {data.original_language}
       </AdditionalOverviewData>
+      <HeadlineTypography>Cast credits</HeadlineTypography>
+      {tvId && (
+        <PersonGrid
+          overrideLoadingState
+          contentId={tvId}
+          apiEndpoint={castEndpoint}
+          apiKey="PersonTVCredits"
+        />
+      )}
+
       {hasSeasons && (
         <>
           <HeadlineTypography>Seasons</HeadlineTypography>
@@ -83,7 +96,14 @@ export default function TvOverviewPage() {
         </>
       )}
       <HeadlineTypography>Related Series</HeadlineTypography>
-      <GeneralTvGrid apiEndPointKey="TV" apiEndPoint={recommendedEndpoint} />
+      {tvId && (
+        <GeneralTvGrid
+          overrideLoadingState
+          contentId={tvId}
+          apiEndPointKey="TV"
+          apiEndPoint={recommendedEndpoint}
+        />
+      )}
     </div>
   );
 }

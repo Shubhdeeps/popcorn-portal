@@ -11,26 +11,26 @@ export default function HomePage() {
     <div className="home-page">
       <br />
       <br />
-      <UpcomingMoviesGrid />
+      <UpcomingMoviesGrid contentId="Home-upcoming" />
       <br />
       <HeadlineTypography>Top rated</HeadlineTypography>
-      <TopRatedMoviesGrid />
+      <TopRatedMoviesGrid contentId="Home-top-rated" />
       <br />
 
       <HeadlineTypography>On air</HeadlineTypography>
-      <GeneralTvGrid apiEndPointKey="TVOnAir" />
+      <GeneralTvGrid contentId="Home-tv-on-air" apiEndPointKey="TVOnAir" />
 
       <br />
       <HeadlineTypography>In Cinema</HeadlineTypography>
-      <GeneralMoviesGrid />
+      <GeneralMoviesGrid contentId="home" />
 
       <br />
       <HeadlineTypography>Popcorn originals</HeadlineTypography>
-      <TVPopularGrid />
+      <TVPopularGrid contentId="Home-tv-popular" />
       <br />
 
       <HeadlineTypography>Popular celebrities</HeadlineTypography>
-      <PopularPersonGrid />
+      <PopularPersonGrid contentId="Home-person" apiKey="PeoplePopular" />
       <br />
     </div>
   );

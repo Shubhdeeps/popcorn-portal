@@ -9,16 +9,22 @@ import { APIEndpointKeys } from "@/utils/endpoints";
 type IProps = {
   endPointKey?: APIEndpointKeys;
   ApiEndPoint?: string;
+  contentId: string;
+  overwriteLoadingState?: boolean;
 };
 export default function GeneralMoviesGrid({
   endPointKey = "NowPlaying",
+  contentId,
   ApiEndPoint,
+  overwriteLoadingState,
 }: IProps) {
   const { error, loading, results, setScrolledToEnd } = useFetch<MovieModel>(
     endPointKey,
+    contentId,
     ApiEndPoint
   );
   const array = skeletonGenerator(results, loading);
+  const isLoading = overwriteLoadingState && loading;
 
   return (
     <div className="general-card-grid">
@@ -27,7 +33,7 @@ export default function GeneralMoviesGrid({
           {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
-                <NowPlayingMovieCard {...media} />
+                <NowPlayingMovieCard isLoading={isLoading} {...media} />
               </div>
             );
           })}

@@ -65,11 +65,10 @@ export function useCarouselScroll({
           behavior: "smooth",
         });
       }
+      indexOfCurrentChildInView.current += 1;
       //bounce back to first card if there are no more cards in the list
       if (indexOfCurrentChildInView.current + 1 >= (childNodes?.length || 0)) {
         indexOfCurrentChildInView.current = 0;
-      } else {
-        indexOfCurrentChildInView.current += 1;
       }
     }, delayInSeconds * 1000);
 

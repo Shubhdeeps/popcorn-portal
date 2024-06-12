@@ -1,11 +1,7 @@
-import { CardFooter, CardRating } from "@/components/Card/base-card";
-import Carousel from "@/components/Carousel";
 import HeadlineTypography from "@/components/Typography/headline-typography";
-import VideoPlayer from "@/components/Video/video-player";
 import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import ActionBar from "@/features/Overview/ActionBar";
 import AdditionalOverviewData from "@/features/Overview/AdditionalData";
-import OverviewCard from "@/features/Overview/OverviewCard";
 import PersonCard from "@/features/People/Cards/PersonCard";
 import GeneralTvGrid from "@/features/TV/Grid/GeneralTvGrid";
 import { AppDispatch, RootState } from "@/store";
@@ -51,8 +47,8 @@ export default function PersonOverviewPage() {
     return <></>;
   }
 
-  const movieCredits = `https://api.themoviedb.org/3/person/${personId}/movie_credits?language=en-US`;
-  const tvCredits = `https://api.themoviedb.org/3/person/${personId}/tv_credits?language=en-US`;
+  const movieCredits = `${APIEndpoints.MovieCredits}/${personId}/movie_credits`;
+  const tvCredits = `${APIEndpoints.TvCredits}/${personId}/tv_credits`;
   return (
     <div className="media-overview-page">
       <ActionBar />
@@ -80,13 +76,24 @@ export default function PersonOverviewPage() {
       {data.biography && <span>{data.biography}</span>}
 
       <HeadlineTypography>Movie Credits</HeadlineTypography>
-      <GeneralMoviesGrid
-        endPointKey="Recommendations"
-        ApiEndPoint={movieCredits}
-      />
+      {personId && (
+        <GeneralMoviesGrid
+          overwriteLoadingState
+          contentId={personId}
+          endPointKey="MovieCredits"
+          ApiEndPoint={movieCredits}
+        />
+      )}
 
       <HeadlineTypography>TV Credits</HeadlineTypography>
-      <GeneralTvGrid apiEndPointKey="TV" apiEndPoint={tvCredits} />
+      {personId && (
+        <GeneralTvGrid
+          overrideLoadingState
+          contentId={personId}
+          apiEndPointKey="TvCredits"
+          apiEndPoint={tvCredits}
+        />
+      )}
     </div>
   );
 }

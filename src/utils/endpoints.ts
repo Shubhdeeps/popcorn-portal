@@ -16,6 +16,10 @@ export enum APIEndpoints {
   TopRated = `${baseURL}movie/top_rated`,
   Popular = `${baseURL}movie/popular`,
   PeoplePopular = `${baseURL}person/popular`,
+  TvCredits = `${baseURL}person`,
+  MovieCredits = `${baseURL}person`,
+  PersonCredits = `${baseURL}movie`,
+  PersonTVCredits = `${baseURL}tv`,
   //Single object
   MediaOverview = baseURL,
   // Search = `${baseURL}search`,

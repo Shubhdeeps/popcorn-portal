@@ -5,6 +5,7 @@ import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import ActionBar from "@/features/Overview/ActionBar";
 import AdditionalOverviewData from "@/features/Overview/AdditionalData";
 import OverviewCard from "@/features/Overview/OverviewCard";
+import PersonGrid from "@/features/People/Grid/PopularPersonGrid";
 import { AppDispatch, RootState } from "@/store";
 import {
   MediaOverviewDataModel,
@@ -50,8 +51,13 @@ export default function MovieOverviewPage() {
   }
 
   const recommendedEndpoint =
-    APIEndpoints.Recommendations + "/" + movieId + "/recommendations";
+    APIEndpoints.Recommendations + "/" + movieId + "/similar";
+  const castEndpoint = `${APIEndpoints.PersonCredits}/${movieId}/credits`;
 
+  console.log({
+    recommendedEndpoint,
+    castEndpoint,
+  });
   return (
     <div className="media-overview-page">
       <ActionBar />
@@ -75,11 +81,27 @@ export default function MovieOverviewPage() {
       <AdditionalOverviewData title="Released on">
         {dateStrToTimeStr(data.release_date)}
       </AdditionalOverviewData>
-      <HeadlineTypography>Related Movies</HeadlineTypography>
-      <GeneralMoviesGrid
-        endPointKey="Recommendations"
-        ApiEndPoint={recommendedEndpoint}
-      />
+
+      <>
+        <HeadlineTypography>Cast credits</HeadlineTypography>
+        {movieId && (
+          <PersonGrid
+            overrideLoadingState
+            contentId={movieId}
+            apiEndpoint={castEndpoint}
+            apiKey="PersonCredits"
+          />
+        )}
+        <HeadlineTypography>Related Movies</HeadlineTypography>
+        {movieId && (
+          <GeneralMoviesGrid
+            overwriteLoadingState
+            contentId={movieId}
+            endPointKey="Recommendations"
+            ApiEndPoint={recommendedEndpoint}
+          />
+        )}
+      </>
     </div>
   );
 }
