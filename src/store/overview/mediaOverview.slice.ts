@@ -41,7 +41,6 @@ const overviewSlice = createSlice({
         };
       })
       .addCase(overviewReducerAsync.rejected, (state, action) => {
-        console.log({ action });
         const error = action.error.message;
         state.data.loading = false;
         state.data.error = error;

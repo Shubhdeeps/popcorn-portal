@@ -1,4 +1,5 @@
 import Button from "@/components/Button/button";
+import FavoriteButton from "@/components/Button/favorite-button";
 import Card, {
   CardContent,
   CardDescription,
@@ -27,6 +28,14 @@ export default function PopularMovieCard({
   poster_path,
   isLoading,
 }: INowPlayingProps) {
+  const props = {
+    id,
+    overview,
+    title,
+    vote_average,
+    poster_path,
+    isLoading,
+  };
   return (
     <Card className="popular-movie-card" isLoading={isLoading}>
       <CardImage src={`${APIEndpoints.Image}${poster_path}`} />
@@ -41,7 +50,11 @@ export default function PopularMovieCard({
       </CardContent>
       <CardFooter>
         <div className="d-flex justify-center">
-          <Button>Watch list</Button>
+          <FavoriteButton
+            mediaType="movie"
+            titlePrimary="Watch later"
+            props={props as unknown as MovieModel}
+          />
         </div>
       </CardFooter>
     </Card>

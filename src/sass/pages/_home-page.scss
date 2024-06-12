@@ -1,6 +1,8 @@
 .home-page {
-  margin: 1rem 0;
-
+  margin: 0 0 1rem 0;
+  @include md {
+    margin: 1rem 0;
+  }
   section {
     margin: 2rem 0;
   }

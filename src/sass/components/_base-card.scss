@@ -87,6 +87,11 @@
       width: 100%;
       object-fit: cover;
     }
+    &__no-image {
+      border-radius: $base-border-radius;
+      width: 100%;
+      background: $muted-color;
+    }
   }
 
   &__card-header {

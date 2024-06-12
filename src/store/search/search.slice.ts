@@ -48,7 +48,6 @@ const mediaSlice = createSlice({
         state.data["results"] = action.payload.results;
       })
       .addCase(searchReducerAsync.rejected, (state, action) => {
-        console.log({ action });
         const error = action.error.message;
         state.data.loading = false;
         state.data.error = error;

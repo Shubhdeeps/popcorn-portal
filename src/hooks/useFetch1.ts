@@ -9,7 +9,6 @@ export function useFetch<T>(
   contentId: string,
   ApiEndpoint?: string
 ) {
-  console.log({ contentId });
   const [scrolledToEnd, setScrolledToEnd] = useState<boolean>(false);
   const data = useSelector((state: RootState) => state.media.data)[APIKey];
   const dispatch = useDispatch<AppDispatch>();
@@ -31,10 +30,6 @@ export function useFetch<T>(
     pageStatus.current.totalPages = 0;
     pageStatus.current.total_results = 0;
     pageStatus.current.baseQuery = `${apiEndpoint}?language=en-US&page=`;
-    console.log(
-      "fetching first ...",
-      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
-    );
     if (
       pageStatus.current.lastPageFetched === pageStatus.current.nextPageNumber
     ) {
@@ -54,7 +49,6 @@ export function useFetch<T>(
   }, [APIKey, dispatch, contentId]);
 
   useEffect(() => {
-    console.log({ data });
     // Only for updating page numbers to avoid excessive refreshes and stale data
     if (data && data?.page) {
       pageStatus.current.nextPageNumber = data.page + 1;
@@ -66,7 +60,6 @@ export function useFetch<T>(
   // For infinite scroll
   useEffect(() => {
     //triggered when user scrolled to end to fetch more data
-    console.log(pageStatus.current);
     const isUserOnLastPage =
       pageStatus.current.totalPages < pageStatus.current.nextPageNumber;
     const hasPreviousPageFetched = pageStatus.current.total_results === 1; //should not be 1 when there's a final data
@@ -80,19 +73,8 @@ export function useFetch<T>(
       hasPreviousPageFetched ||
       isNextPageAlreadyFetched
     ) {
-      console.log("returning without fetching", {
-        isUserOnLastPage,
-        notScrolledToEnd: !scrolledToEnd,
-        hasPreviousPageFetched,
-        isNextPageAlreadyFetched,
-      });
       return;
     }
-
-    console.log(
-      "fetching more ...",
-      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
-    );
 
     dispatch(
       mediaReducerAsync({

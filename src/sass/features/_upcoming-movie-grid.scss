@@ -28,6 +28,10 @@
       $background-color,
       $background-color
     );
+    display: none;
+    @include sm {
+      display: block;
+    }
 
     width: 2rem;
     @include sm {
@@ -87,7 +91,7 @@
     display: none;
     height: 400px;
     overflow: auto;
-    @include lg {
+    @include md {
       display: block;
     }
   }

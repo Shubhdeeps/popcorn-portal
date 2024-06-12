@@ -1,5 +1,6 @@
 import { starSVG } from "@/assets/Star.svg";
-import { HTMLAttributes, ImgHTMLAttributes } from "react";
+import { HTMLAttributes, ImgHTMLAttributes, useRef } from "react";
+import invalid from "@/assets/invalid.png";
 
 type ICardBaseProps = {
   children: React.ReactNode;
@@ -76,9 +77,13 @@ function CardContent({ children, ...props }: ICardContentProps) {
 }
 
 function CardImage({ ...imageProps }: ICardImageProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const handleError = () => {
+    if (imageRef.current) imageRef.current.src = invalid;
+  };
   return (
     <div className={`card__card-image ${imageProps.className || ""}`}>
-      <img {...imageProps} />
+      <img ref={imageRef} onError={handleError} {...imageProps} />
     </div>
   );
 }

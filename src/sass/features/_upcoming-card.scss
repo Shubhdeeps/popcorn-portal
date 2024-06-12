@@ -96,3 +96,10 @@
     }
   }
 }
+
+.upcoming-loader {
+  height: 400px;
+  border-radius: $base-border-radius;
+  background: $card-color;
+  animation: skeleton-animation 0.6s infinite alternate-reverse;
+}

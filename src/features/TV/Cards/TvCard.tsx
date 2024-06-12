@@ -7,6 +7,7 @@ import Card, {
 } from "@/components/Card/base-card";
 import { TvShow } from "@/models/TV.model";
 import { APIEndpoints } from "@/utils/endpoints";
+import { Link } from "react-router-dom";
 
 type ITVProps = Pick<TvShow, "poster_path" | "id" | "name" | "vote_average"> & {
   isLoading?: boolean;
@@ -22,10 +23,13 @@ export default function TVCard({
     <Card isLoading={isLoading} className="tv-card">
       <div className="tv-card__svg-wrapper">
         <div className="tv-card__background-gradient" />
-        <div className="tv-card__svg d-flex align-center gap-1">
+        <Link
+          to={`/tv/${id}`}
+          className="tv-card__svg d-flex align-center gap-1"
+        >
           {playMiniSVG}
-          <a>Watch now</a>
-        </div>
+          <span>Watch now</span>
+        </Link>
         <CardImage
           src={`${APIEndpoints.Image}/${poster_path}`}
           className="tv-card__image"
