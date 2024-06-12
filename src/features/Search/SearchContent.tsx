@@ -12,15 +12,11 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionOberver";
 export default function SearchContent() {
   const [activeTab, setActiveTab] = useState<SearchTabs>("all");
   const [searchText, setSearchText] = useState("");
-  // const searchResultRef = useRef<HTMLDivElement>(null);
-
+  const { inView, ref, parentRef } = useIntersectionObserver();
   const { error, hasMore, loading, results, setScrolledToEnd } = useMediaSearch(
     searchText,
     activeTab
   );
-
-  const { inView, ref, parentRef } = useIntersectionObserver();
-
   useEffect(() => {
     setScrolledToEnd(inView);
   }, [inView, setScrolledToEnd]);

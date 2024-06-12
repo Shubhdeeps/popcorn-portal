@@ -9,58 +9,86 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
   const data = useSelector((state: RootState) => state.media.data)[APIKey];
   const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
-  const currentPageNumber = useRef({
-    currentPage: 1,
+  const pageStatus = useRef({
+    nextPageNumber: 1,
+    lastPageFetched: 0,
     totalPages: 0,
-    total_results: 1,
+    total_results: 0,
+    baseQuery: `${apiEndpoint}?language=en-US&page=`, // non changing -> no need to update during side-effect
   });
 
   useEffect(() => {
-    //triggered when user scrolled to end to fetch more data
+    console.log(
+      "fetching first ...",
+      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
+    );
     if (
-      currentPageNumber.current.totalPages <=
-        currentPageNumber.current.currentPage &&
-      currentPageNumber.current.total_results === 0 // if no results found -> the total_results will be set to zero on second load
+      pageStatus.current.lastPageFetched === pageStatus.current.nextPageNumber
     ) {
-      //all pages were fetched
       return;
     }
 
     dispatch(
       mediaReducerAsync({
         APIKey: APIKey,
-        ApiEndpoint: `${apiEndpoint}?language=en-US&page=${currentPageNumber.current.currentPage}`,
+        ApiEndpoint:
+          pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
       })
     );
-  }, [APIKey, apiEndpoint, dispatch, scrolledToEnd]);
+
+    pageStatus.current.lastPageFetched = pageStatus.current.nextPageNumber;
+  }, [APIKey, dispatch]);
 
   useEffect(() => {
+    console.log({ data });
     // Only for updating page numbers to avoid excessive refreshes and stale data
     if (data && data?.page) {
-      currentPageNumber.current = {
-        currentPage: data.page, // if no results are found -> currentPage will be set to zero
-        totalPages: data.total_pages,
-        total_results: data.total_results,
-      };
+      pageStatus.current.nextPageNumber = data.page + 1;
+      pageStatus.current.totalPages = data.total_pages;
+      pageStatus.current.total_results = data.total_results;
     }
   }, [data]);
 
-  // useEffect(() => {
-  //   //triggered when user scrolled to end to fetch more data
-  //   if (
-  //     currentPageNumber.current.totalPages <=
-  //     currentPageNumber.current.currentPage
-  //   ) {
-  //     //all pages were fetched
-  //     return;
-  //   }
-  //   dispatch(
-  //     mediaReducerAsync({
-  //       APIKey: APIKey,
-  //       ApiEndpoint: apiEndpoint, //update it with page number
-  //     })
-  //   );
-  // }, [APIKey, apiEndpoint, dispatch, scrolledToEnd]);
+  // For infinite scroll
+  useEffect(() => {
+    //triggered when user scrolled to end to fetch more data
+    console.log(pageStatus.current);
+    const isUserOnLastPage =
+      pageStatus.current.totalPages < pageStatus.current.nextPageNumber;
+    const hasPreviousPageFetched = pageStatus.current.total_results === 1; //should not be 1 when there's a final data
+    const isNextPageAlreadyFetched =
+      pageStatus.current.nextPageNumber === pageStatus.current.lastPageFetched;
+
+    //triggered when user scrolled to end to fetch more data
+    if (
+      isUserOnLastPage ||
+      !scrolledToEnd ||
+      hasPreviousPageFetched ||
+      isNextPageAlreadyFetched
+    ) {
+      console.log("returning without fetching", {
+        isUserOnLastPage,
+        notScrolledToEnd: !scrolledToEnd,
+        hasPreviousPageFetched,
+        isNextPageAlreadyFetched,
+      });
+      return;
+    }
+
+    console.log(
+      "fetching more ...",
+      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
+    );
+
+    dispatch(
+      mediaReducerAsync({
+        APIKey: APIKey,
+        ApiEndpoint:
+          pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
+      })
+    );
+    pageStatus.current.lastPageFetched = pageStatus.current.nextPageNumber;
+  }, [APIKey, dispatch, scrolledToEnd]);
 
   return {
     loading: data?.loading || false,

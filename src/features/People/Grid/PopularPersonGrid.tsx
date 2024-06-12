@@ -5,12 +5,13 @@ import PersonCard from "../Cards/PersonCard";
 import { Person } from "@/models/Person.model";
 
 export default function TVOnAirGrid() {
-  const { error, loading, results } = useFetch<Person>("PeoplePopular");
+  const { error, loading, results, setScrolledToEnd } =
+    useFetch<Person>("PeoplePopular");
 
   return (
     <div className="general-card-grid">
       <div>
-        <Carousel>
+        <Carousel onScrolledToEnd={(state) => setScrolledToEnd(state)}>
           {results.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>

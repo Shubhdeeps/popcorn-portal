@@ -1,30 +1,35 @@
 import { useCarouselScroll } from "@/hooks/useCarouselScroll";
-import { useScrollTrigger } from "@/hooks/useScrollTrigger";
-import React, { useRef } from "react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionOberver";
+import React, { useEffect } from "react";
 
 export default function Carousel({
   children,
   direction = "horizontal",
   animated = false,
-  eventScrolledTOEnd,
+  onScrolledToEnd,
 }: {
   children: React.ReactNode[];
   direction?: "horizontal" | "vertical";
   animated?: boolean;
-  eventScrolledTOEnd?: (reachedEnd: boolean) => void;
+  onScrolledToEnd?: (state: boolean) => void;
 }) {
-  const carouselRef = useRef<HTMLDivElement | null>(null);
+  // const carouselRef = useRef<HTMLDivElement | null>(null);
 
-  useScrollTrigger(carouselRef, eventScrolledTOEnd, direction === "vertical");
+  const { inView, parentRef, ref } = useIntersectionObserver();
+
   useCarouselScroll({
-    parentRef: carouselRef,
+    parentRef: parentRef,
     animated,
     delayInSeconds: 5,
     isVertical: direction === "vertical", //true if its vertical
   });
 
+  useEffect(() => {
+    if (onScrolledToEnd) onScrolledToEnd(inView);
+  }, [inView, onScrolledToEnd]);
+
   return (
-    <div ref={carouselRef} className={`carousel carousel__${direction}`}>
+    <div ref={parentRef} className={`carousel carousel__${direction}`}>
       {children.map((child, index) => {
         const newElement = React.createElement("div", {
           className: "carousel__slide",
@@ -34,6 +39,7 @@ export default function Carousel({
         });
         return newElement;
       })}
+      <div ref={ref} />
     </div>
   );
 }

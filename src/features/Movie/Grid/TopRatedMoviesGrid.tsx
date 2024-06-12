@@ -12,11 +12,7 @@ export default function TopRatedMoviesGrid() {
   return (
     <div className="general-card-grid">
       <div>
-        <Carousel
-          eventScrolledTOEnd={(state) => {
-            setScrolledToEnd(state);
-          }}
-        >
+        <Carousel onScrolledToEnd={(state) => setScrolledToEnd(state)}>
           {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>

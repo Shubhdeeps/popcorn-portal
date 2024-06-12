@@ -5,13 +5,14 @@ import TVCard from "../Cards/TvCard";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 
 export default function TVOnAirGrid() {
-  const { error, loading, results } = useFetch<TvShow>("TVOnAir");
+  const { error, loading, results, setScrolledToEnd } =
+    useFetch<TvShow>("TVOnAir");
   const array = skeletonGenerator(results, loading);
 
   return (
     <div className="general-card-grid">
       <div>
-        <Carousel>
+        <Carousel onScrolledToEnd={(state) => setScrolledToEnd(state)}>
           {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
