@@ -1,0 +1,26 @@
+.video-player {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+
+  &__action-bar {
+    padding: 0.25rem 0rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+  }
+  &__button {
+    cursor: pointer;
+
+    border-radius: 0.25rem;
+    line-height: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #242424;
+    &:hover {
+      filter: brightness(1.5);
+    }
+  }
+}

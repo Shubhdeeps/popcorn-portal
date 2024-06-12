@@ -10,6 +10,7 @@ import Card, {
 } from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
 import { APIEndpoints } from "@/utils/endpoints";
+import { Link } from "react-router-dom";
 
 type INowPlayingProps = Pick<
   MovieModel,
@@ -31,7 +32,7 @@ export default function PopularMovieCard({
       <CardImage src={`${APIEndpoints.Image}${poster_path}`} />
       <CardHeader>
         <CardTitle>
-          <a>{title}</a>
+          <Link to={`/movie/${id}`}>{title}</Link>
         </CardTitle>
         <CardRating rating={vote_average} />
       </CardHeader>

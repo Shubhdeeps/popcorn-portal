@@ -43,10 +43,8 @@ const mediaSlice = createSlice({
         if (fetchMore) {
           //concat if its fetching more!
           state.data["results"].push(...action.payload.results);
-          console.log("fetching more", state.data.results);
           return;
         }
-        console.log("state date:", state.data.results);
         state.data["results"] = action.payload.results;
       })
       .addCase(searchReducerAsync.rejected, (state, action) => {

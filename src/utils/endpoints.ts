@@ -1,6 +1,8 @@
-// const baseURL = "https://api.themoviedb.org/3/";
-const baseURL = "http://localhost:3000/"; //for JSON server
+const baseURL = "https://api.themoviedb.org/3/";
+// const baseURL = "http://localhost:3000/"; //for JSON server
 export enum APIEndpoints {
+  BaseURL = baseURL,
+  Recommendations = `${baseURL}movie`,
   GuestSession = `${baseURL}authentication/guest_session/new`,
   CountriesList = `${baseURL}configuration/countries?language=en-US`,
   Languages = `${baseURL}configuration/languages`,
@@ -14,6 +16,12 @@ export enum APIEndpoints {
   TopRated = `${baseURL}movie/top_rated`,
   Popular = `${baseURL}movie/popular`,
   PeoplePopular = `${baseURL}person/popular`,
+  TvCredits = `${baseURL}person`,
+  MovieCredits = `${baseURL}person`,
+  PersonCredits = `${baseURL}movie`,
+  PersonTVCredits = `${baseURL}tv`,
+  //Single object
+  MediaOverview = baseURL,
   // Search = `${baseURL}search`,
   Search = "https://api.themoviedb.org/3/search",
   Image = `http://image.tmdb.org/t/p/w500`,

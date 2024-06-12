@@ -4,11 +4,16 @@ import { APIEndpointKeys, APIEndpoints } from "@/utils/endpoints";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
+export function useFetch<T>(
+  APIKey: APIEndpointKeys,
+  contentId: string,
+  ApiEndpoint?: string
+) {
+  console.log({ contentId });
   const [scrolledToEnd, setScrolledToEnd] = useState<boolean>(false);
   const data = useSelector((state: RootState) => state.media.data)[APIKey];
-  const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
+  const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const pageStatus = useRef({
     nextPageNumber: 1,
     lastPageFetched: 0,
@@ -17,7 +22,15 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
     baseQuery: `${apiEndpoint}?language=en-US&page=`, // non changing -> no need to update during side-effect
   });
 
+  // useEffect(() => {
+  // }, [apiEndpoint, contentId]);
+
   useEffect(() => {
+    pageStatus.current.nextPageNumber = 1;
+    pageStatus.current.lastPageFetched = 0;
+    pageStatus.current.totalPages = 0;
+    pageStatus.current.total_results = 0;
+    pageStatus.current.baseQuery = `${apiEndpoint}?language=en-US&page=`;
     console.log(
       "fetching first ...",
       pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
@@ -33,11 +46,12 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
         APIKey: APIKey,
         ApiEndpoint:
           pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
+        fetchMore: false,
       })
     );
 
     pageStatus.current.lastPageFetched = pageStatus.current.nextPageNumber;
-  }, [APIKey, dispatch]);
+  }, [APIKey, dispatch, contentId]);
 
   useEffect(() => {
     console.log({ data });
@@ -85,6 +99,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
         APIKey: APIKey,
         ApiEndpoint:
           pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
+        fetchMore: scrolledToEnd,
       })
     );
     pageStatus.current.lastPageFetched = pageStatus.current.nextPageNumber;

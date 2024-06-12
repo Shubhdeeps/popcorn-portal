@@ -4,10 +4,14 @@ import { TvShow } from "@/models/TV.model";
 import TVCard from "../Cards/TvCard";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
-
-export default function TVOnAirGrid() {
-  const { error, loading, results, setScrolledToEnd } =
-    useFetch<TvShow>("TVPopular");
+type IProps = {
+  contentId: string;
+};
+export default function TVOnAirGrid({ contentId }: IProps) {
+  const { error, loading, results, setScrolledToEnd } = useFetch<TvShow>(
+    "TVPopular",
+    contentId
+  );
   const array = skeletonGenerator(results, loading);
 
   return (

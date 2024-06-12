@@ -4,12 +4,27 @@ import { TvShow } from "@/models/TV.model";
 import TVCard from "../Cards/TvCard";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
+import { APIEndpointKeys } from "@/utils/endpoints";
 
-export default function TVOnAirGrid() {
-  const { error, loading, results, setScrolledToEnd } =
-    useFetch<TvShow>("TVOnAir");
+type IProps = {
+  apiEndPointKey: APIEndpointKeys;
+  apiEndPoint?: string;
+  contentId: string;
+  overrideLoadingState?: boolean;
+};
+export default function GeneralTvGrid({
+  apiEndPoint,
+  apiEndPointKey,
+  contentId,
+  overrideLoadingState,
+}: IProps) {
+  const { error, loading, results, setScrolledToEnd } = useFetch<TvShow>(
+    apiEndPointKey,
+    contentId,
+    apiEndPoint
+  );
   const array = skeletonGenerator(results, loading);
-
+  const isLoading = overrideLoadingState && loading;
   return (
     <div className="general-card-grid">
       <div>
@@ -17,7 +32,7 @@ export default function TVOnAirGrid() {
           {array.map((media) => {
             return (
               <div className="general-card-grid__card " key={media.id}>
-                <TVCard {...media} />
+                <TVCard isLoading={isLoading} {...media} />
               </div>
             );
           })}

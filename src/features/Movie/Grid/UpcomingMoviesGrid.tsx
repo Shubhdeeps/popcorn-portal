@@ -7,8 +7,14 @@ import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
 
-export default function UpcomingMoviesGrid() {
-  const { error, loading, results } = useFetch<MovieModel>("Upcoming");
+type IProps = {
+  contentId: string;
+};
+export default function UpcomingMoviesGrid({ contentId }: IProps) {
+  const { error, loading, results } = useFetch<MovieModel>(
+    "Upcoming",
+    contentId
+  );
 
   const dataArray = [...results];
   const top6 = dataArray.splice(0, 6);

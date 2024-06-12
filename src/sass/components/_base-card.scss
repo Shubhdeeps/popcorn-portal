@@ -10,6 +10,20 @@
   border-radius: $base-border-radius + $base-padding;
   box-shadow: $base-box-shadow;
 
+  a {
+    &:visited {
+      color: $primary-color;
+      text-decoration: none;
+    }
+    &:link {
+      color: $primary-color;
+      text-decoration: none;
+    }
+    &:active {
+      color: $primary-color;
+      text-decoration: none;
+    }
+  }
   a:hover {
     text-decoration: underline;
     cursor: pointer;

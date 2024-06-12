@@ -1,9 +1,9 @@
 import HeadlineTypography from "@/components/Typography/headline-typography";
-import NowPlayingMoviesGrid from "@/features/Movie/Grid/NowPlayingMoviesGrid";
+import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import TopRatedMoviesGrid from "@/features/Movie/Grid/TopRatedMoviesGrid";
 import UpcomingMoviesGrid from "@/features/Movie/Grid/UpcomingMoviesGrid";
 import PopularPersonGrid from "@/features/People/Grid/PopularPersonGrid";
-import TVOnAirGrid from "@/features/TV/Grid/TVOnAirGrid";
+import GeneralTvGrid from "@/features/TV/Grid/GeneralTvGrid";
 import TVPopularGrid from "@/features/TV/Grid/TVPopularGrid";
 
 export default function HomePage() {
@@ -11,26 +11,26 @@ export default function HomePage() {
     <div className="home-page">
       <br />
       <br />
-      <UpcomingMoviesGrid />
+      <UpcomingMoviesGrid contentId="Home-upcoming" />
       <br />
       <HeadlineTypography>Top rated</HeadlineTypography>
-      <TopRatedMoviesGrid />
+      <TopRatedMoviesGrid contentId="Home-top-rated" />
       <br />
 
       <HeadlineTypography>On air</HeadlineTypography>
-      <TVOnAirGrid />
+      <GeneralTvGrid contentId="Home-tv-on-air" apiEndPointKey="TVOnAir" />
 
       <br />
       <HeadlineTypography>In Cinema</HeadlineTypography>
-      <NowPlayingMoviesGrid />
+      <GeneralMoviesGrid contentId="home" />
 
       <br />
       <HeadlineTypography>Popcorn originals</HeadlineTypography>
-      <TVPopularGrid />
+      <TVPopularGrid contentId="Home-tv-popular" />
       <br />
 
       <HeadlineTypography>Popular celebrities</HeadlineTypography>
-      <PopularPersonGrid />
+      <PopularPersonGrid contentId="Home-person" apiKey="PeoplePopular" />
       <br />
     </div>
   );
