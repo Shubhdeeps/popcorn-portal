@@ -1,11 +1,34 @@
 import TextField from "@/components/TextField/input-text-field";
 import { SearchTabs, searchTabs } from "@/models/SearchTabs.model";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchOptionTab from "./SearchOptionTab";
+import { useMediaSearch } from "@/hooks/useMediaSearch";
 import SearchResultCard from "./SearchResultCard";
+import { SearchModel } from "@/models/Search.model";
+import { skeletonGenerator } from "@/utils/skeletonGenerator";
+import { APIResponseDataModel } from "@/models/EndPoints.model";
+import { useIntersectionObserver } from "@/hooks/useIntersectionOberver";
 
 export default function SearchContent() {
   const [activeTab, setActiveTab] = useState<SearchTabs>("all");
+  const [searchText, setSearchText] = useState("");
+  // const searchResultRef = useRef<HTMLDivElement>(null);
+
+  const { error, hasMore, loading, results, setScrolledToEnd } = useMediaSearch(
+    searchText,
+    activeTab
+  );
+
+  const { inView, ref, parentRef } = useIntersectionObserver();
+
+  useEffect(() => {
+    setScrolledToEnd(inView);
+  }, [inView, setScrolledToEnd]);
+
+  const array = skeletonGenerator<APIResponseDataModel["results"][number]>(
+    results,
+    loading
+  );
 
   function handleSetActiveTab(newTab: SearchTabs) {
     setActiveTab(newTab);
@@ -14,7 +37,11 @@ export default function SearchContent() {
   return (
     <div className="search">
       <div className="search__textfield">
-        <TextField />
+        <TextField
+          role="search"
+          onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
+        />
       </div>
       <div className="search__tabs">
         <div className="search__tabs-wrapper">
@@ -31,7 +58,21 @@ export default function SearchContent() {
         </div>
       </div>
       <hr />
-      <div className="search__result"></div>
+      <div ref={parentRef} className="search__result">
+        {array.map((searchedItem) => {
+          return (
+            <SearchResultCard
+              key={searchedItem.id}
+              data={searchedItem as SearchModel}
+            />
+          );
+        })}
+        {hasMore ? (
+          <div className="border-1" ref={ref} />
+        ) : (
+          <div>No more results</div>
+        )}
+      </div>
     </div>
   );
 }

@@ -4,18 +4,22 @@ import UpcomingMovieMiniCard from "../Cards/UpcomingMovieMiniCard";
 import { useFetch } from "@/hooks/useFetch1";
 import Spinner from "@/components/Spinner";
 import { MovieModel } from "@/models/Movie.model";
+import { skeletonGenerator } from "@/utils/skeletonGenerator";
 
 export default function UpcomingMoviesGrid() {
   const { error, loading, results } = useFetch<MovieModel>("Upcoming");
 
   const dataArray = [...results];
+  const top6 = dataArray.splice(0, 6);
+  const array = skeletonGenerator(dataArray, loading);
+
   return (
     <>
       <div className="upcoming-movie-grid">
         <div className="upcoming-movie-grid__carousel-wrapper">
           {/* {response.state === "success" && ( */}
           <Carousel animated>
-            {dataArray.splice(0, 6).map((movie) => {
+            {top6.map((movie) => {
               return (
                 <UpcomingMovieCard
                   key={movie.id}
@@ -29,14 +33,12 @@ export default function UpcomingMoviesGrid() {
               );
             })}
           </Carousel>
-          {/* )} */}
           <div className="upcoming-movie-grid__gradient" />
         </div>
         <div className="gradient-wrapper">
           <div className="upcoming-movie-grid__mini-carousel-wrapper">
-            {/* {response.state === "success" && ( */}
             <>
-              {dataArray.map((movie) => {
+              {array.map((movie) => {
                 return (
                   <UpcomingMovieMiniCard
                     id={movie.id}
@@ -50,12 +52,9 @@ export default function UpcomingMoviesGrid() {
               })}
             </>
           </div>
-          <div className="horizontal-gradient">
-            <a>Browse all</a>
-          </div>
+          <div className="horizontal-gradient">{/* <a>Browse all</a> */}</div>
         </div>
       </div>
-      {/* <div className="col-md-3 border-1"></div> */}
       {/* Error */}
       {Boolean(error) && <div>{error}</div>}
       {/* Spinner state */}

@@ -1,27 +1,42 @@
 import { tabTypeAndIcon } from "@/assets/TabIcons";
-import {
+import Card, {
   CardContent,
   CardDescription,
+  CardImage,
   CardTitle,
 } from "@/components/Card/base-card";
 import { SearchModel } from "@/models/Search.model";
+import { APIEndpoints } from "@/utils/endpoints";
 
-type ISearchResultProps = { data: SearchModel };
-export default function SearchResultCard({ data }: ISearchResultProps) {
+type ISearchResultProps = { data: SearchModel; isLoading?: boolean };
+function SearchResultCard({ data, isLoading }: ISearchResultProps) {
   const icon = tabTypeAndIcon[data?.media_type || "all"]; //fallback to "all"
   const title =
     data.media_type === "movie" ? data.original_title : data.original_name;
-
-  const overview = data.media_type === "person" ? "" : data.overview;
+  const imagePath =
+    data.media_type === "person" ? data.profile_path : data.poster_path;
+  const overview =
+    data.media_type === "person"
+      ? "Department: " + data.known_for_department
+      : data.overview;
   return (
-    <div className="search-result">
+    <Card isLoading={isLoading} className="search-result">
       <CardContent className="search-result__content">
-        {icon("")}
+        {imagePath && (
+          <CardImage
+            className="search-result__image"
+            src={`${APIEndpoints.Image}${imagePath}`}
+          />
+        )}
         <div>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle>
+            {title} {icon("")}
+          </CardTitle>
           <CardDescription>{overview}</CardDescription>
         </div>
       </CardContent>
-    </div>
+    </Card>
   );
 }
+
+export default SearchResultCard;

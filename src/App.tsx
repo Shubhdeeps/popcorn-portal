@@ -7,6 +7,7 @@ import { router } from "./pages";
 
 // API reference => https://developer.themoviedb.org/reference/tv-episode-videos
 function App() {
+  console.log("APP");
   return <RouterProvider router={router} />;
 }
 

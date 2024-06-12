@@ -44,10 +44,10 @@ const mediaSlice = createSlice({
         };
       })
       .addCase(mediaReducerAsync.rejected, (state, action) => {
-        console.log({ action });
+        // console.log({ action });
         const key = action.meta.arg.APIKey;
         const error = action.error.message;
-
+        state.data[key]["loading"] = false;
         state.data[key]["error"] = error;
       });
   },

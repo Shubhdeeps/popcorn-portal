@@ -10,44 +10,57 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
   const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
   const currentPageNumber = useRef({
-    currentPage: 0,
+    currentPage: 1,
     totalPages: 0,
+    total_results: 1,
   });
-  useEffect(() => {
-    dispatch(
-      mediaReducerAsync({
-        APIKey: APIKey,
-        ApiEndpoint: apiEndpoint,
-      })
-    );
-  }, [APIKey, apiEndpoint, dispatch]);
-
-  useEffect(() => {
-    // Only for updating page numbers to avoid excessive refreshes and stale data
-    if (data && data?.page) {
-      currentPageNumber.current = {
-        currentPage: data.page,
-        totalPages: data.total_pages,
-      };
-    }
-  }, [data]);
 
   useEffect(() => {
     //triggered when user scrolled to end to fetch more data
     if (
       currentPageNumber.current.totalPages <=
-      currentPageNumber.current.currentPage
+        currentPageNumber.current.currentPage &&
+      currentPageNumber.current.total_results === 0 // if no results found -> the total_results will be set to zero on second load
     ) {
       //all pages were fetched
       return;
     }
+
     dispatch(
       mediaReducerAsync({
         APIKey: APIKey,
-        ApiEndpoint: apiEndpoint, //update it with page number
+        ApiEndpoint: `${apiEndpoint}?language=en-US&page=${currentPageNumber.current.currentPage}`,
       })
     );
   }, [APIKey, apiEndpoint, dispatch, scrolledToEnd]);
+
+  useEffect(() => {
+    // Only for updating page numbers to avoid excessive refreshes and stale data
+    if (data && data?.page) {
+      currentPageNumber.current = {
+        currentPage: data.page, // if no results are found -> currentPage will be set to zero
+        totalPages: data.total_pages,
+        total_results: data.total_results,
+      };
+    }
+  }, [data]);
+
+  // useEffect(() => {
+  //   //triggered when user scrolled to end to fetch more data
+  //   if (
+  //     currentPageNumber.current.totalPages <=
+  //     currentPageNumber.current.currentPage
+  //   ) {
+  //     //all pages were fetched
+  //     return;
+  //   }
+  //   dispatch(
+  //     mediaReducerAsync({
+  //       APIKey: APIKey,
+  //       ApiEndpoint: apiEndpoint, //update it with page number
+  //     })
+  //   );
+  // }, [APIKey, apiEndpoint, dispatch, scrolledToEnd]);
 
   return {
     loading: data?.loading || false,

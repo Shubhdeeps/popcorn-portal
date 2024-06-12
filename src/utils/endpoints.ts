@@ -14,7 +14,8 @@ export enum APIEndpoints {
   TopRated = `${baseURL}movie/top_rated`,
   Popular = `${baseURL}movie/popular`,
   PeoplePopular = `${baseURL}person/popular`,
-  Search = `${baseURL}search/multi?query=`,
+  // Search = `${baseURL}search`,
+  Search = "https://api.themoviedb.org/3/search",
   Image = `http://image.tmdb.org/t/p/w500`,
   Youtube = `https://www.youtube.com/watch?v=`,
 }

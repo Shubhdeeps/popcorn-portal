@@ -14,8 +14,14 @@ export default function Carousel({
   eventScrolledTOEnd?: (reachedEnd: boolean) => void;
 }) {
   const carouselRef = useRef<HTMLDivElement | null>(null);
-  useScrollTrigger(carouselRef, eventScrolledTOEnd);
-  useCarouselScroll(carouselRef, animated);
+
+  useScrollTrigger(carouselRef, eventScrolledTOEnd, direction === "vertical");
+  useCarouselScroll({
+    parentRef: carouselRef,
+    animated,
+    delayInSeconds: 5,
+    isVertical: direction === "vertical", //true if its vertical
+  });
 
   return (
     <div ref={carouselRef} className={`carousel carousel__${direction}`}>

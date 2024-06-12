@@ -86,7 +86,7 @@
     width: auto;
     display: none;
     height: 400px;
-    overflow: hidden;
+    overflow: auto;
     @include lg {
       display: block;
     }
