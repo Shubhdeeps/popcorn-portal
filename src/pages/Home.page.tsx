@@ -1,5 +1,5 @@
 import HeadlineTypography from "@/components/Typography/headline-typography";
-import NowPlayingMoviesGrid from "@/features/Movie/Grid/NowPlayingMoviesGrid";
+import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import TopRatedMoviesGrid from "@/features/Movie/Grid/TopRatedMoviesGrid";
 import UpcomingMoviesGrid from "@/features/Movie/Grid/UpcomingMoviesGrid";
 import PopularPersonGrid from "@/features/People/Grid/PopularPersonGrid";
@@ -22,7 +22,7 @@ export default function HomePage() {
 
       <br />
       <HeadlineTypography>In Cinema</HeadlineTypography>
-      <NowPlayingMoviesGrid />
+      <GeneralMoviesGrid />
 
       <br />
       <HeadlineTypography>Popcorn originals</HeadlineTypography>

@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
   const [scrolledToEnd, setScrolledToEnd] = useState<boolean>(false);
   const data = useSelector((state: RootState) => state.media.data)[APIKey];
-  const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const dispatch = useDispatch<AppDispatch>();
+  const apiEndpoint = ApiEndpoint || APIEndpoints[APIKey];
   const pageStatus = useRef({
     nextPageNumber: 1,
     lastPageFetched: 0,

@@ -20,6 +20,8 @@
 @import "./components/carousel";
 @import "./components/headline-typography";
 @import "./components/error";
+@import "./components/video-player";
+@import "./components/drop-down";
 
 // Features: cards
 @import "./features/now-playing-card";
@@ -29,11 +31,12 @@
 @import "./features/tv-card";
 @import "./features/search";
 @import "./features/popular-movie-card";
-
+@import "./features/overview-card";
 // Features: grids
 @import "./features/upcoming-movie-grid";
 @import "./features/general-card-grid";
 
+@import "./features/overview-action-bar";
 // Pages
 @import "./pages/home-page";
 @import "./pages/media-overview-page";

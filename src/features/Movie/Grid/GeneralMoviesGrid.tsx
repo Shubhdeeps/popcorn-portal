@@ -4,10 +4,20 @@ import Carousel from "@/components/Carousel";
 import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
+import { APIEndpointKeys } from "@/utils/endpoints";
 
-export default function NowPlayingMoviesGrid() {
-  const { error, loading, results, setScrolledToEnd } =
-    useFetch<MovieModel>("NowPlaying");
+type IProps = {
+  endPointKey?: APIEndpointKeys;
+  ApiEndPoint?: string;
+};
+export default function GeneralMoviesGrid({
+  endPointKey = "NowPlaying",
+  ApiEndPoint,
+}: IProps) {
+  const { error, loading, results, setScrolledToEnd } = useFetch<MovieModel>(
+    endPointKey,
+    ApiEndPoint
+  );
   const array = skeletonGenerator(results, loading);
 
   return (
