@@ -4,10 +4,17 @@ import { TvShow } from "@/models/TV.model";
 import TVCard from "../Cards/TvCard";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
+import { APIEndpointKeys } from "@/utils/endpoints";
 
-export default function TVOnAirGrid() {
-  const { error, loading, results, setScrolledToEnd } =
-    useFetch<TvShow>("TVOnAir");
+type IProps = {
+  apiEndPointKey: APIEndpointKeys;
+  apiEndPoint?: string;
+};
+export default function GeneralTvGrid({ apiEndPoint, apiEndPointKey }: IProps) {
+  const { error, loading, results, setScrolledToEnd } = useFetch<TvShow>(
+    apiEndPointKey,
+    apiEndPoint
+  );
   const array = skeletonGenerator(results, loading);
 
   return (

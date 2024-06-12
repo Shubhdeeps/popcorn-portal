@@ -56,8 +56,17 @@ export const overviewReducerAsync = createAsyncThunk(
     const ApiEndpoint = baseURL + "?language=en-US";
     const videoEndPoint = baseURL + "/videos?language=en-US";
     const response = await axiosFetch(ApiEndpoint);
-    const videoResponse = await axiosFetch(videoEndPoint);
-    Object.assign(response, { videoResult: videoResponse, type: request.type });
+    if (request.type !== "person") {
+      const videoResponse = await axiosFetch(videoEndPoint);
+      Object.assign(response, {
+        videoResult: videoResponse,
+        type: request.type,
+      });
+    } else {
+      Object.assign(response, {
+        type: "person",
+      });
+    }
     return response;
   }
 );

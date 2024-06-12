@@ -1,6 +1,6 @@
 import { MovieModel, MovieOverviewModel } from "./Movie.model";
-import { Person } from "./Person.model";
-import { TvShow } from "./TV.model";
+import { Person, PersonOverview } from "./Person.model";
+import { TVShowOverview, TvShow } from "./TV.model";
 
 export type APIResponseDataModel = {
   results: MovieModel[] | TvShow[] | Person[];
@@ -13,14 +13,11 @@ type MovieOverview = MovieOverviewModel & {
   type: "movie";
 };
 
-type TvOverview = TvShow & {
+type TvOverview = TVShowOverview & {
   type: "tv";
 };
 
-type PersonOverview = Person & {
+type POverview = PersonOverview & {
   type: "person";
 };
-export type APIResponseOverviewModel =
-  | MovieOverview
-  | TvOverview
-  | PersonOverview;
+export type APIResponseOverviewModel = MovieOverview | TvOverview | POverview;

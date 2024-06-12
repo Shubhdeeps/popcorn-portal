@@ -30,10 +30,6 @@ export default function MovieOverviewPage() {
   const video = videoResults.find((video) => video.type === "Trailer");
   console.log({ video });
   useEffect(() => {
-    if (data.id) {
-      //only for testing
-      return;
-    }
     console.log("Fetching....");
     if (movieId) {
       console.log("calling with: ", {

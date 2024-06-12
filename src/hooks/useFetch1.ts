@@ -33,6 +33,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
         APIKey: APIKey,
         ApiEndpoint:
           pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
+        fetchMore: false,
       })
     );
 
@@ -85,6 +86,7 @@ export function useFetch<T>(APIKey: APIEndpointKeys, ApiEndpoint?: string) {
         APIKey: APIKey,
         ApiEndpoint:
           pageStatus.current.baseQuery + pageStatus.current.nextPageNumber,
+        fetchMore: scrolledToEnd,
       })
     );
     pageStatus.current.lastPageFetched = pageStatus.current.nextPageNumber;

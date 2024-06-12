@@ -34,7 +34,10 @@ const mediaSlice = createSlice({
         const key = action.meta.arg.APIKey;
         //update the state with the key
         const previousResult = state.data[key]?.results || [];
-        const newResult = [...previousResult, ...action.payload.results];
+        const newResult = [
+          ...previousResult,
+          ...(action.payload.results || action.payload.cast),
+        ];
         state.data[key] = {
           error: null,
           loading: false,
@@ -55,7 +58,11 @@ const mediaSlice = createSlice({
 
 export const mediaReducerAsync = createAsyncThunk(
   "media/mediaDataAsync",
-  async (request: { APIKey: APIEndpointKeys; ApiEndpoint: string }) => {
+  async (request: {
+    APIKey: APIEndpointKeys;
+    ApiEndpoint: string;
+    fetchMore: boolean;
+  }) => {
     // const ApiEndPoint = APIEndpoints[request.APIKey];
     await new Promise((resolve) => setTimeout(resolve, 2000));
     const response = await axiosFetch(request.ApiEndpoint);
