@@ -1,9 +1,7 @@
 import {
   CardContent,
   CardDescription,
-  CardFooter,
   CardImage,
-  CardRating,
   CardTitle,
 } from "@/components/Card/base-card";
 import { MediaOverviewDataModel } from "@/store/overview/mediaOverview.slice";

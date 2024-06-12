@@ -8,6 +8,7 @@ import { SearchModel } from "@/models/Search.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import { APIResponseDataModel } from "@/models/EndPoints.model";
 import { useIntersectionObserver } from "@/hooks/useIntersectionOberver";
+import ErrorCard from "@/components/Error/ErrorCard";
 
 export default function SearchContent() {
   const [activeTab, setActiveTab] = useState<SearchTabs>("all");
@@ -69,6 +70,8 @@ export default function SearchContent() {
           <div>No more results</div>
         )}
       </div>
+      {/* Error */}
+      {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
     </div>
   );
 }

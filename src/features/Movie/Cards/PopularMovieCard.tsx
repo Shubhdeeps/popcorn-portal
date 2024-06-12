@@ -1,4 +1,3 @@
-import Button from "@/components/Button/button";
 import FavoriteButton from "@/components/Button/favorite-button";
 import Card, {
   CardContent,

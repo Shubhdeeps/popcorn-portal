@@ -1,4 +1,3 @@
-import { playMiniSVG } from "@/assets/Play.svg";
 import Card, {
   CardHeader,
   CardImage,
