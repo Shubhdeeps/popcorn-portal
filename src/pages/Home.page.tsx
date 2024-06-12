@@ -1,4 +1,5 @@
 import HeadlineTypography from "@/components/Typography/headline-typography";
+import FavoriteGrid from "@/features/Favorites/FavoriteGrid";
 import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import TopRatedMoviesGrid from "@/features/Movie/Grid/TopRatedMoviesGrid";
 import UpcomingMoviesGrid from "@/features/Movie/Grid/UpcomingMoviesGrid";
@@ -30,6 +31,9 @@ export default function HomePage() {
 
       <HeadlineTypography>Popular celebrities</HeadlineTypography>
       <PopularPersonGrid contentId="Home-person" apiKey="PeoplePopular" />
+
+      <HeadlineTypography>Favorites</HeadlineTypography>
+      <FavoriteGrid />
     </div>
   );
 }

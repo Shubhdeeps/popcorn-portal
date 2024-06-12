@@ -1,3 +1,4 @@
+import FavoriteButton from "@/components/Button/favorite-button";
 import { CardFooter, CardRating } from "@/components/Card/base-card";
 import HeadlineTypography from "@/components/Typography/headline-typography";
 import VideoPlayer from "@/components/Video/video-player";
@@ -6,6 +7,7 @@ import ActionBar from "@/features/Overview/ActionBar";
 import AdditionalOverviewData from "@/features/Overview/AdditionalData";
 import OverviewCard from "@/features/Overview/OverviewCard";
 import PersonGrid from "@/features/People/Grid/PopularPersonGrid";
+import { MovieModel } from "@/models/Movie.model";
 import { AppDispatch, RootState } from "@/store";
 import {
   MediaOverviewDataModel,
@@ -75,7 +77,12 @@ export default function MovieOverviewPage() {
       <AdditionalOverviewData title="Released on">
         {dateStrToTimeStr(data.release_date)}
       </AdditionalOverviewData>
-
+      <AdditionalOverviewData title="">
+        <FavoriteButton
+          props={data as unknown as MovieModel}
+          mediaType="movie"
+        />
+      </AdditionalOverviewData>
       <>
         <HeadlineTypography>Cast credits</HeadlineTypography>
         {movieId && (

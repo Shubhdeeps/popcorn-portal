@@ -1,3 +1,4 @@
+import FavoriteButton from "@/components/Button/favorite-button";
 import { CardFooter, CardRating } from "@/components/Card/base-card";
 import Carousel from "@/components/Carousel";
 import HeadlineTypography from "@/components/Typography/headline-typography";
@@ -8,6 +9,7 @@ import OverviewCard from "@/features/Overview/OverviewCard";
 import PersonGrid from "@/features/People/Grid/PopularPersonGrid";
 import TVSeasonCard from "@/features/TV/Cards/TvSeasonCard";
 import GeneralTvGrid from "@/features/TV/Grid/GeneralTvGrid";
+import { TvShow } from "@/models/TV.model";
 import { AppDispatch, RootState } from "@/store";
 import {
   MediaOverviewDataModel,
@@ -70,6 +72,9 @@ export default function TvOverviewPage() {
       </AdditionalOverviewData>
       <AdditionalOverviewData title="Language">
         {data.original_language}
+      </AdditionalOverviewData>
+      <AdditionalOverviewData title="">
+        <FavoriteButton mediaType="tv" props={data as unknown as TvShow} />
       </AdditionalOverviewData>
       <HeadlineTypography>Cast credits</HeadlineTypography>
       {tvId && (
