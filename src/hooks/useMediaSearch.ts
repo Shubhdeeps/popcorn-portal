@@ -45,11 +45,6 @@ export function useMediaSearch(searchText: string, selectedTab: SearchTabs) {
     pageStatus.current.totalPages = 0;
     pageStatus.current.total_results = 0;
 
-    console.log(
-      "fetching first ...",
-      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
-    );
-
     //5. call the api -> dispatch redux middleware
     dispatch(
       searchReducerAsync({
@@ -85,12 +80,6 @@ export function useMediaSearch(searchText: string, selectedTab: SearchTabs) {
       hasPreviousPageFetched ||
       isNextPageAlreadyFetched
     ) {
-      console.log("returning without fetching", {
-        isUserOnLastPage,
-        notScrolledToEnd: !scrolledToEnd,
-        hasPreviousPageFetched,
-        isNextPageAlreadyFetched,
-      });
       return;
     }
 

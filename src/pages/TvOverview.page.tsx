@@ -16,6 +16,7 @@ import {
 import { APIEndpoints } from "@/utils/endpoints";
 
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -25,16 +26,11 @@ export default function TvOverviewPage() {
     (state: RootState) => state.overview.data
   ) as MediaOverviewDataModel;
   const dispatch = useDispatch<AppDispatch>();
-  console.log({ data });
   const videoResults = data.videoResult?.results || [];
   const video = videoResults.find((video) => video.type === "Trailer");
-  console.log({ video });
+
   useEffect(() => {
     if (tvId) {
-      console.log("calling with: ", {
-        mediaId: +tvId,
-        type: "movie",
-      });
       dispatch(
         overviewReducerAsync({
           mediaId: +tvId,
@@ -56,6 +52,10 @@ export default function TvOverviewPage() {
 
   return (
     <div className="media-overview-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> {data.name}</title>
+      </Helmet>
       <ActionBar />
       {video && <VideoPlayer videoKey={video?.key} videoSite={video?.site} />}
       <OverviewCard props={data} />

@@ -40,6 +40,7 @@
 
     &::-webkit-scrollbar {
       width: 0em;
+      height: 0px;
     }
   }
   &__tabs-wrapper {
@@ -69,7 +70,7 @@
   &__tab-active {
     color: $foreground-color;
     border-bottom: 2px solid $foreground-color;
-    line-height: 2rem;
+    line-height: 1.7rem;
     transition: 0.1s ease-in-out;
 
     path {

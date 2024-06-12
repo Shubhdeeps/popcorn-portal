@@ -2,7 +2,6 @@ import UpcomingMovieCard from "../Cards/UpcomingMovieCard";
 import Carousel from "@/components/Carousel";
 import UpcomingMovieMiniCard from "../Cards/UpcomingMovieMiniCard";
 import { useFetch } from "@/hooks/useFetch1";
-import Spinner from "@/components/Spinner";
 import { MovieModel } from "@/models/Movie.model";
 import { skeletonGenerator } from "@/utils/skeletonGenerator";
 import ErrorCard from "@/components/Error/ErrorCard";
@@ -66,8 +65,6 @@ export default function UpcomingMoviesGrid({ contentId }: IProps) {
       </div>
       {/* Error */}
       {Boolean(error) && <ErrorCard>{error}</ErrorCard>}
-      {/* Spinner state */}
-      {loading && <Spinner />}
     </>
   );
 }

@@ -27,7 +27,6 @@ export default function UpcomingMovieMiniCard({
   const posterPath = `${APIEndpoints.Image}${poster_path}`;
   return (
     <Card isLoading={isLoading} className="upcoming-movie-mini-card">
-      {/* <div className="upcoming-movie-mini-card__image-wrapper"></div> */}
       <img className="upcoming-movie-mini-card__image" src={posterPath} />
 
       <CardContent className="d-flex flex-col">

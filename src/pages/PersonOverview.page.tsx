@@ -13,6 +13,7 @@ import { APIEndpoints } from "@/utils/endpoints";
 import { dateStrToTimeStr } from "@/utils/timeFormatter";
 
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -22,18 +23,9 @@ export default function PersonOverviewPage() {
     (state: RootState) => state.overview.data
   ) as MediaOverviewDataModel;
   const dispatch = useDispatch<AppDispatch>();
-  console.log({ data });
+
   useEffect(() => {
-    if (data.id) {
-      //only for testing
-      return;
-    }
-    console.log("Fetching....");
     if (personId) {
-      console.log("calling with: ", {
-        mediaId: +personId,
-        type: "person",
-      });
       dispatch(
         overviewReducerAsync({
           mediaId: +personId,
@@ -51,6 +43,10 @@ export default function PersonOverviewPage() {
   const tvCredits = `${APIEndpoints.TvCredits}/${personId}/tv_credits`;
   return (
     <div className="media-overview-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> {data.name}</title>
+      </Helmet>
       <ActionBar />
       <div className="d-flex justify-center mb-1">
         <PersonCard

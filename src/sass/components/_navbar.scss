@@ -31,6 +31,7 @@
 }
 
 .app-logo {
+  cursor: pointer;
   text-align: start;
   font-weight: 700;
   font-size: $font-size-md;
@@ -41,6 +42,6 @@
 
   &__semi-header {
     font-size: $font-size-sm;
-    text-align: end;
+    margin-left: 2px;
   }
 }

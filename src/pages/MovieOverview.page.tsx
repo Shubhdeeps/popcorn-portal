@@ -17,6 +17,7 @@ import {
   formatMinutesToTimeStr,
 } from "@/utils/timeFormatter";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -26,17 +27,10 @@ export default function MovieOverviewPage() {
     (state: RootState) => state.overview.data
   ) as MediaOverviewDataModel;
   const dispatch = useDispatch<AppDispatch>();
-  console.log({ data });
   const videoResults = data.videoResult?.results || [];
   const video = videoResults.find((video) => video.type === "Trailer");
-  console.log({ video });
   useEffect(() => {
-    console.log("Fetching....");
     if (movieId) {
-      console.log("calling with: ", {
-        mediaId: +movieId,
-        type: "movie",
-      });
       dispatch(
         overviewReducerAsync({
           mediaId: +movieId,
@@ -54,12 +48,12 @@ export default function MovieOverviewPage() {
     APIEndpoints.Recommendations + "/" + movieId + "/similar";
   const castEndpoint = `${APIEndpoints.PersonCredits}/${movieId}/credits`;
 
-  console.log({
-    recommendedEndpoint,
-    castEndpoint,
-  });
   return (
     <div className="media-overview-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{data.original_title}</title>
+      </Helmet>
       <ActionBar />
       {video && <VideoPlayer videoKey={video?.key} videoSite={video?.site} />}
       <OverviewCard props={data} />
