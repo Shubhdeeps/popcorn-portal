@@ -29,6 +29,7 @@ export default function UpcomingMoviesGrid({ contentId }: IProps) {
             {top6.map((movie) => {
               return (
                 <UpcomingMovieCard
+                  isLoading={loading}
                   key={movie.id}
                   backdrop_path={movie.backdrop_path}
                   id={movie.id}
@@ -48,6 +49,7 @@ export default function UpcomingMoviesGrid({ contentId }: IProps) {
               {array.map((movie) => {
                 return (
                   <UpcomingMovieMiniCard
+                    isLoading={loading}
                     id={movie.id}
                     overview={movie.overview}
                     poster_path={movie.poster_path}
