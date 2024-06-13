@@ -18,13 +18,13 @@ This funky film portal dishes details, ratings, and reviews for your movie obses
 
 ### To run in development mode
 
-- clone git repo [https://github.com/Shubhdeeps/popcorn-portal](https://github.com/Shubhdeeps/popcorn-portal.git)
+- clone git repo [https://github.com/Shubhdeeps/popcorn-portal](https://github.com/Shubhdeeps/popcorn-portal.git) <br>
   `git clone https://github.com/Shubhdeeps/popcorn-portal`
 
 - add .env file to the root of the project with two variables API key `VITE_TMDB_API_KEY` and API Read access token `VITE_API_READ_ACCESS_TOKEN` found at [https://developer.themoviedb.org/](https://developer.themoviedb.org/)
 
-- open the terminal and cd into root directory and install dependencies
+- open the terminal and cd into root directory and install dependencies <br>
   `cd popcorn-portal` -> `npm install` or `yarn`
 
-- run dev server
+- run dev server <br>
   `npm run dev` or `yarn dev`
