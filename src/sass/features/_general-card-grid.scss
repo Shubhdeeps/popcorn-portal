@@ -1,9 +1,15 @@
 .general-card-grid {
   &__card {
     width: 220px;
-
     @include md {
       width: 260px;
+    }
+  }
+
+  &__person-card {
+    width: fit-content;
+    @include md {
+      width: fit-content;
     }
   }
 }

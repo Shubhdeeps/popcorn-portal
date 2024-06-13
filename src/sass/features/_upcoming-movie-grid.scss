@@ -1,9 +1,13 @@
 .upcoming-movie-grid {
+  padding-top: 0.75rem;
+  @include md {
+    padding-top: 0rem;
+  }
   display: flex;
   gap: 2rem;
   &__carousel-wrapper {
     position: relative;
-    width: 340px;
+    width: 100%;
     height: auto;
     @include sm {
       width: 420px;
@@ -28,15 +32,12 @@
       $background-color,
       $background-color
     );
-    display: none;
-    @include sm {
-      display: block;
-    }
+    display: block;
 
-    width: 2rem;
-    @include sm {
-      width: 7rem;
-    }
+    width: 10rem;
+    // @include sm {
+    //   width: 7rem;
+    // }
     @include md {
       width: 15rem;
     }

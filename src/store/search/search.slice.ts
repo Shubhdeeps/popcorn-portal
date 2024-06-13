@@ -58,7 +58,6 @@ const mediaSlice = createSlice({
 export const searchReducerAsync = createAsyncThunk(
   "search/mediaDataAsync",
   async (request: { ApiEndpoint: string; fetchMore: boolean }) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     const response = await axiosFetch(request.ApiEndpoint);
     return response;
   }

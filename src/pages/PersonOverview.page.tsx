@@ -1,3 +1,4 @@
+import DocumentHelmet from "@/components/Helmet/DocumentHelmet";
 import HeadlineTypography from "@/components/Typography/headline-typography";
 import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
 import ActionBar from "@/features/Overview/ActionBar";
@@ -13,7 +14,6 @@ import { APIEndpoints } from "@/utils/endpoints";
 import { dateStrToTimeStr } from "@/utils/timeFormatter";
 
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -43,10 +43,7 @@ export default function PersonOverviewPage() {
   const tvCredits = `${APIEndpoints.TvCredits}/${personId}/tv_credits`;
   return (
     <div className="media-overview-page">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title> {data.name}</title>
-      </Helmet>
+      <DocumentHelmet>{data.name}</DocumentHelmet>
       <ActionBar />
       <div className="d-flex justify-center mb-1">
         <PersonCard

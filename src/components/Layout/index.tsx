@@ -7,16 +7,18 @@ import Footer from "./footer";
 
 export default function Layout() {
   const [showModal, setShowModal] = useState(false);
-
+  function closeModal() {
+    setShowModal(false);
+  }
   return (
     <>
       <Navbar setShowModal={setShowModal} />
-      <div className="h-10 w-full" />
+      <div className="navbar-padding w-full" />
       <div className="container">
         <Outlet />
       </div>
       <ModalWindow changeVisibility={setShowModal} visible={showModal}>
-        <SearchContent />
+        <SearchContent closeModal={closeModal} />
       </ModalWindow>
       <Footer />
     </>

@@ -1,9 +1,4 @@
 .media-overview-page {
-  padding: 0rem 0.15rem 2rem 0.15rem;
-
-  @include sm {
-    padding: 0.75rem 0rem 1rem 0rem;
-  }
   &__footer {
     padding-bottom: 0.75rem;
     span {

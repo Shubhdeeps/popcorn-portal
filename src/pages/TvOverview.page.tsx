@@ -1,6 +1,7 @@
 import FavoriteButton from "@/components/Button/favorite-button";
 import { CardFooter, CardRating } from "@/components/Card/base-card";
 import Carousel from "@/components/Carousel";
+import DocumentHelmet from "@/components/Helmet/DocumentHelmet";
 import HeadlineTypography from "@/components/Typography/headline-typography";
 import VideoPlayer from "@/components/Video/video-player";
 import ActionBar from "@/features/Overview/ActionBar";
@@ -18,7 +19,6 @@ import {
 import { APIEndpoints } from "@/utils/endpoints";
 
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -54,10 +54,7 @@ export default function TvOverviewPage() {
 
   return (
     <div className="media-overview-page">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title> {data.name}</title>
-      </Helmet>
+      <DocumentHelmet>{data.name}</DocumentHelmet>
       <ActionBar />
       {video && <VideoPlayer videoKey={video?.key} videoSite={video?.site} />}
       <OverviewCard props={data} />

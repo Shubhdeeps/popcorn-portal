@@ -10,7 +10,11 @@ import { APIResponseDataModel } from "@/models/EndPoints.model";
 import { useIntersectionObserver } from "@/hooks/useIntersectionOberver";
 import ErrorCard from "@/components/Error/ErrorCard";
 
-export default function SearchContent() {
+export default function SearchContent({
+  closeModal,
+}: {
+  closeModal: () => void;
+}) {
   const [activeTab, setActiveTab] = useState<SearchTabs>("all");
   const [searchText, setSearchText] = useState("");
   const { inView, ref, parentRef } = useIntersectionObserver();
@@ -59,6 +63,7 @@ export default function SearchContent() {
         {array.map((searchedItem) => {
           return (
             <SearchResultCard
+              closeModal={closeModal}
               key={searchedItem.id}
               data={searchedItem as SearchModel}
             />

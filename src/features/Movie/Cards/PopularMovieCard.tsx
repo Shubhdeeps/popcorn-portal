@@ -37,7 +37,10 @@ export default function PopularMovieCard({
   };
   return (
     <Card className="popular-movie-card" isLoading={isLoading}>
-      <CardImage src={`${APIEndpoints.Image}${poster_path}`} />
+      <CardImage
+        className="popular-movie-card__image"
+        src={`${APIEndpoints.Image}${poster_path}`}
+      />
       <CardHeader>
         <CardTitle>
           <Link to={`/movie/${id}`}>{title}</Link>

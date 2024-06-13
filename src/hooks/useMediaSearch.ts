@@ -83,13 +83,6 @@ export function useMediaSearch(searchText: string, selectedTab: SearchTabs) {
       return;
     }
 
-    //1. select a parameter based on selected tab
-
-    console.log(
-      "fetching more ...",
-      pageStatus.current.baseQuery + pageStatus.current.nextPageNumber
-    );
-
     // console.log("fetching..", { apiQuery });
     //4. call the api -> dispatch redux middleware
     dispatch(

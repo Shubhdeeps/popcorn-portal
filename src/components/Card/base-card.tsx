@@ -31,7 +31,7 @@ interface IMovieRating {
  */
 function Card({ children, isLoading, ...props }: ICardProps) {
   return (
-    <div className={`card  ${props.className || ""}`}>
+    <div {...props} className={`card  ${props.className || ""}`}>
       {isLoading ? <div id="skeleton" /> : <>{children}</>}
     </div>
   );

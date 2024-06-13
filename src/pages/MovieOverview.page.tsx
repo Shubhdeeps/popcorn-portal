@@ -1,5 +1,6 @@
 import FavoriteButton from "@/components/Button/favorite-button";
 import { CardFooter, CardRating } from "@/components/Card/base-card";
+import DocumentHelmet from "@/components/Helmet/DocumentHelmet";
 import HeadlineTypography from "@/components/Typography/headline-typography";
 import VideoPlayer from "@/components/Video/video-player";
 import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
@@ -19,7 +20,6 @@ import {
   formatMinutesToTimeStr,
 } from "@/utils/timeFormatter";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -41,7 +41,6 @@ export default function MovieOverviewPage() {
       );
     }
   }, [dispatch, movieId]);
-
   if (data.type !== "movie") {
     return <></>;
   }
@@ -52,10 +51,7 @@ export default function MovieOverviewPage() {
 
   return (
     <div className="media-overview-page">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{data.original_title}</title>
-      </Helmet>
+      <DocumentHelmet>{data.original_title}</DocumentHelmet>
       <ActionBar />
       {video && <VideoPlayer videoKey={video?.key} videoSite={video?.site} />}
       <OverviewCard props={data} />

@@ -7,10 +7,20 @@ import Card, {
 } from "@/components/Card/base-card";
 import { SearchModel } from "@/models/Search.model";
 import { APIEndpoints } from "@/utils/endpoints";
+import { useNavigate } from "react-router-dom";
 
-type ISearchResultProps = { data: SearchModel; isLoading?: boolean };
-function SearchResultCard({ data, isLoading }: ISearchResultProps) {
+type ISearchResultProps = {
+  data: SearchModel;
+  isLoading?: boolean;
+  closeModal: () => void;
+};
+function SearchResultCard({ data, isLoading, closeModal }: ISearchResultProps) {
   const icon = tabTypeAndIcon[data?.media_type || "all"]; //fallback to "all"
+  const navigate = useNavigate();
+  function handleNavigate() {
+    closeModal();
+    navigate(`/${data.media_type}/${data.id}`);
+  }
   const title =
     data.media_type === "movie" ? data.original_title : data.original_name;
   const imagePath =
@@ -20,7 +30,11 @@ function SearchResultCard({ data, isLoading }: ISearchResultProps) {
       ? "Department: " + data.known_for_department
       : data.overview;
   return (
-    <Card isLoading={isLoading} className="search-result">
+    <Card
+      onClick={handleNavigate}
+      isLoading={isLoading}
+      className="search-result"
+    >
       <CardContent className="search-result__content">
         {imagePath && (
           <CardImage

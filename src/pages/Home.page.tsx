@@ -1,3 +1,4 @@
+import DocumentHelmet from "@/components/Helmet/DocumentHelmet";
 import HeadlineTypography from "@/components/Typography/headline-typography";
 import FavoriteGrid from "@/features/Favorites/FavoriteGrid";
 import GeneralMoviesGrid from "@/features/Movie/Grid/GeneralMoviesGrid";
@@ -6,15 +7,11 @@ import UpcomingMoviesGrid from "@/features/Movie/Grid/UpcomingMoviesGrid";
 import PopularPersonGrid from "@/features/People/Grid/PopularPersonGrid";
 import GeneralTvGrid from "@/features/TV/Grid/GeneralTvGrid";
 import TVPopularGrid from "@/features/TV/Grid/TVPopularGrid";
-import { Helmet } from "react-helmet";
 
 export default function HomePage() {
   return (
     <div className="home-page">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Dashboard | Popcorn Portal</title>
-      </Helmet>
+      <DocumentHelmet>Dashboard | Popcorn Portal</DocumentHelmet>
       <UpcomingMoviesGrid contentId="Home-upcoming" />
 
       <HeadlineTypography>Top rated</HeadlineTypography>

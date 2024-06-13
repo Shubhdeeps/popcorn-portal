@@ -6,6 +6,7 @@ import {
 } from "@/components/Card/base-card";
 import { MovieModel } from "@/models/Movie.model";
 import { APIEndpoints } from "@/utils/endpoints";
+import { dateStrToTimeStr } from "@/utils/timeFormatter";
 import { useNavigate } from "react-router-dom";
 
 type IUpcomingMovieProps = Pick<
@@ -65,7 +66,7 @@ export default function UpcomingMovieCard({
                 </div>
                 <CardRating rating={7.6} />
                 <CardDescription>
-                  {isReleased} on {release_date}
+                  {isReleased} on {dateStrToTimeStr(release_date)}
                 </CardDescription>
               </div>
             </div>

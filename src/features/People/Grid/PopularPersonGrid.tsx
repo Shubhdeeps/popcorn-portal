@@ -33,7 +33,7 @@ export default function PersonGrid({
         <Carousel onScrolledToEnd={(state) => setScrolledToEnd(state)}>
           {array.map((media) => {
             return (
-              <div className="general-card-grid__card " key={media.id}>
+              <div className="general-card-grid__person-card " key={media.id}>
                 <PersonCard isLoading={isLoading} {...media} />
               </div>
             );
